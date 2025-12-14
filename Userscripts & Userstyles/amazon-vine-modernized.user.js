@@ -6182,13 +6182,17 @@
     // Move Notification Monitor header elements into the main card for #monitor (robust version)
     function moveMonitorHeaderElements(attempt = 0) {
         if (window.location.hash !== '#monitor') return;
+        const header = document.getElementById('vh-notifications-monitor-header');
+        const headerUI = document.getElementById('vh-notifications-monitor-header-ui');
         const card = document.querySelector('#vh-notifications-monitor-header-ui > div[style*="flex-grow: 1"]');
         const icon = document.querySelector('#vh-notifications-monitor-header .vh-icon-48.vh-icon-vh-48');
         const h2 = document.querySelector('#vh-notifications-monitor-header h2');
         const tier = document.querySelector('#vh-notifications-monitor-header #user-tier-info');
         const statsCol = card && card.querySelector('div[style*="flex: 1 1 200px"]');
         const filters = document.querySelector('#vh-notifications-monitor-header-ui > #vh-nm-filters');
-        if (!card || !icon || !h2 || !tier || !statsCol || !filters) {
+        const statusSW = document.getElementById('statusSW');
+        const statusWS = document.getElementById('statusWS');
+        if (!header || !headerUI || !card || !icon || !h2 || !tier || !statsCol || !filters || !statusSW || !statusWS) {
             if (attempt < 20) setTimeout(() => moveMonitorHeaderElements(attempt + 1), 100);
             return;
         }
@@ -6204,9 +6208,60 @@
         if (h2.parentNode !== headerRow) headerRow.appendChild(h2);
         // Move user tier info into the left stats column
         if (tier.parentNode !== statsCol) statsCol.appendChild(tier);
+
+        // Create inline status container and move statuses into header row end
+        let statusContainer = headerRow.querySelector('.vh-header-statuses');
+        if (!statusContainer) {
+            statusContainer = document.createElement('div');
+            statusContainer.className = 'vh-header-statuses';
+            headerRow.appendChild(statusContainer);
+        }
+        if (statusSW.parentNode !== statusContainer) statusContainer.appendChild(statusSW);
+        if (statusWS.parentNode !== statusContainer) statusContainer.appendChild(statusWS);
+
+        // Ensure minimize button exists
+        ensureMonitorHeaderMinimize(headerRow, header);
+
         // Move the filter card to the very bottom of the main card
         if (filters.parentNode !== card || card.lastElementChild !== filters) {
             card.appendChild(filters);
+        }
+    }
+
+    function toggleMonitorHeaderMinimized(forceState) {
+        const header = document.getElementById('vh-notifications-monitor-header');
+        if (!header) return;
+        const shouldMinimize = typeof forceState === 'boolean'
+            ? forceState
+            : !header.classList.contains('nm-minimized');
+        header.classList.toggle('nm-minimized', shouldMinimize);
+        const toggleButton = header.querySelector('.vh-monitor-minimize-btn');
+        if (toggleButton) {
+            toggleButton.setAttribute('aria-pressed', shouldMinimize ? 'true' : 'false');
+        }
+        localStorage.setItem('vh_nm_minimized', shouldMinimize ? '1' : '0');
+    }
+
+    function ensureMonitorHeaderMinimize(headerRow, header) {
+        if (!headerRow || !header) return;
+        let minimizeBtn = headerRow.querySelector('.vh-monitor-minimize-btn');
+        if (!minimizeBtn) {
+            minimizeBtn = document.createElement('button');
+            minimizeBtn.className = 'vh-monitor-minimize-btn';
+            minimizeBtn.setAttribute('aria-label', 'Minimize notifications monitor header');
+            minimizeBtn.setAttribute('title', 'Minimize/Maximize header');
+            minimizeBtn.innerHTML = '<span class="vh-monitor-minimize-icon" aria-hidden="true"></span>';
+            minimizeBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                toggleMonitorHeaderMinimized();
+            });
+            headerRow.prepend(minimizeBtn);
+        }
+        header.classList.add('vh-monitor-minimizable');
+
+        const stored = localStorage.getItem('vh_nm_minimized');
+        if (stored === '1') {
+            toggleMonitorHeaderMinimized(true);
         }
     }
     // MutationObserver to re-run move logic if header UI changes

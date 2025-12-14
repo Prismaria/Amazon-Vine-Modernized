@@ -2576,6 +2576,8 @@
       flex-direction: unset;
       align-items: unset;
       position: static;
+      overflow: hidden;
+      transition: max-height 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     /* Main header UI container - modern card design */
@@ -2594,12 +2596,13 @@
       transform: none;
       width: fit-content;
       box-sizing: border-box;
+      transition: box-shadow 0.2s ease, padding 0.35s ease, max-height 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     /* Header row styling - contains icon, title, and user tier info within vh-notifications-monitor-header-ui */
     body[data-hash="monitor"] #vh-notifications-monitor-header-ui .vh-header-row {
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       margin-top: 0;
       margin-bottom: 0;
       margin-right: 0;
@@ -2619,6 +2622,7 @@
     body[data-hash="monitor"] #vh-notifications-monitor-header-ui .vh-header-row .vh-icon-48.vh-icon-vh-48 {
       flex-shrink: 0;
       margin-right: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
     }
 
     body[data-hash="monitor"] #vh-notifications-monitor-header-ui .vh-header-row h2 {
@@ -2633,6 +2637,7 @@
       max-width: 60%;
       word-wrap: break-word;
       overflow-wrap: break-word;
+      transition: transform 0.3s ease, opacity 0.3s ease;
     }
     
     @media (max-width: 900px) {
@@ -2650,7 +2655,7 @@
 
     body[data-hash="monitor"] #vh-notifications-monitor-header-ui .vh-header-row span {
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       margin-left: auto;
     }
 
@@ -2658,6 +2663,161 @@
       color: var(--main-grey, #636F78);
       font-size: 1em;
       margin: 0;
+    }
+
+    body[data-hash="monitor"] #vh-notifications-monitor-header-ui .vh-header-row .vh-header-statuses {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      margin-left: auto;
+      flex-wrap: wrap;
+      min-width: 240px;
+      transition: transform 0.35s ease, opacity 0.35s ease;
+    }
+
+    body[data-hash="monitor"] #vh-notifications-monitor-header-ui .vh-header-row .vh-header-statuses .notice {
+      margin: 0;
+      padding: 4px 8px;
+      background: rgba(94, 155, 230, 0.16);
+      border-radius: 10px;
+      transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease;
+    }
+
+    body[data-hash="monitor"] #vh-notifications-monitor-header-ui .vh-header-row .vh-header-statuses .notice > div:not(.vh-switch-32) {
+      line-height: 1.2;
+    }
+
+    body[data-hash="monitor"] #vh-notifications-monitor-header-ui .vh-monitor-minimize-btn {
+      background: transparent;
+      border: none;
+      padding: 6px 4px;
+      margin: 0 4px 0 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border-radius: 999px;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+      height: 28px;
+    }
+
+    body[data-hash="monitor"] #vh-notifications-monitor-header-ui .vh-monitor-minimize-btn:focus-visible {
+      outline: 2px solid rgba(94, 155, 230, 0.45);
+      outline-offset: 2px;
+    }
+
+    body[data-hash="monitor"] #vh-notifications-monitor-header-ui .vh-monitor-minimize-btn .vh-monitor-minimize-icon {
+      display: block;
+      width: 28px;
+      height: 10px;
+      background: linear-gradient(90deg, #5E9BE6 0%, #7ab0ff 100%);
+      border-radius: 999px;
+      box-shadow: 0 2px 6px rgba(122, 176, 255, 0.25);
+      position: relative;
+    }
+
+    body[data-hash="monitor"] #vh-notifications-monitor-header-ui .vh-monitor-minimize-btn:hover .vh-monitor-minimize-icon {
+      box-shadow: 0 3px 10px rgba(122, 176, 255, 0.35);
+    }
+
+    /* Minimized header layout */
+    body[data-hash="monitor"] #vh-notifications-monitor-header.vh-monitor-minimizable {
+      max-height: 500px;
+    }
+
+    body[data-hash="monitor"] #vh-notifications-monitor-header.nm-minimized #vh-notifications-monitor-header-ui {
+      padding: 10px 14px;
+      max-height: 72px;
+      display: flex !important;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: nowrap;
+      margin-bottom: 14px !important;
+      min-width: 0;
+      width: auto;
+    }
+
+    body[data-hash="monitor"] #vh-notifications-monitor-header.nm-minimized #vh-notifications-monitor-header-ui > div[style*="flex-grow: 1"] {
+      display: flex !important;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: nowrap;
+      min-width: 0;
+    }
+
+    body[data-hash="monitor"] #vh-notifications-monitor-header.nm-minimized #vh-notifications-monitor-header-ui .vh-header-row {
+      flex-wrap: nowrap;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    body[data-hash="monitor"] #vh-notifications-monitor-header.nm-minimized #vh-notifications-monitor-header-ui .vh-header-row .vh-icon-48.vh-icon-vh-48 {
+      transform: scale(0.9);
+    }
+
+    body[data-hash="monitor"] #vh-notifications-monitor-header.nm-minimized #vh-notifications-monitor-header-ui .vh-header-row h2 {
+      transform: scale(0.94);
+      transform-origin: left center;
+    }
+
+    body[data-hash="monitor"] #vh-notifications-monitor-header.nm-minimized #vh-notifications-monitor-header-ui .vh-header-row .vh-header-statuses {
+      transform: translateX(4px) scale(0.96);
+      gap: 6px;
+      min-width: 0;
+      opacity: 0.95;
+    }
+
+    body[data-hash="monitor"] #vh-notifications-monitor-header.nm-minimized #vh-notifications-monitor-header-ui .vh-header-row .vh-header-statuses .notice {
+      background: rgba(94, 155, 230, 0.25);
+      transform: translateY(-2px);
+    }
+
+    body[data-hash="monitor"] #vh-notifications-monitor-header.nm-minimized #vh-notifications-monitor-header-ui > div[style*="display: flex; flex-wrap: wrap; gap: 10px; width: 100%; max-width: 600px"] {
+      display: none !important;
+      opacity: 0;
+      transform: translateY(-6px);
+      max-height: 0;
+      pointer-events: none;
+    }
+
+    body[data-hash="monitor"] #vh-notifications-monitor-header.nm-minimized #vh-notifications-monitor-header-ui .vh-notification-monitor-controls .vh-control-group:nth-of-type(n+3) {
+      display: none !important;
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+
+    body[data-hash="monitor"] #vh-notifications-monitor-header.nm-minimized #vh-notifications-monitor-header-ui .vh-notification-monitor-controls {
+      gap: 6px;
+    }
+
+    body[data-hash="monitor"] #vh-notifications-monitor-header.nm-minimized #vh-notifications-monitor-header-ui .vh-notification-monitor-controls .vh-control-group {
+      min-width: 120px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    body[data-hash="monitor"] #vh-notifications-monitor-header.nm-minimized #vh-nm-filters {
+      margin-bottom: 0;
+    }
+
+    body[data-hash="monitor"] #vh-notifications-monitor-header.nm-minimized #vh-nm-filters > div {
+      grid-template-columns: auto 1fr;
+      gap: 4px 8px;
+      align-items: center;
+    }
+
+    body[data-hash="monitor"] #vh-notifications-monitor-header.nm-minimized #vh-nm-filters > div > :not(:nth-child(1)):not(:nth-child(2)) {
+      display: none !important;
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+
+    body[data-hash="monitor"] #vh-notifications-monitor-header.nm-minimized #vh-nm-filters input[type="text"] {
+      max-width: 220px;
+    }
+
+    body[data-hash="monitor"] #vh-notifications-monitor-header.nm-minimized #vh-nm-filters select,
+    body[data-hash="monitor"] #vh-notifications-monitor-header.nm-minimized #vh-nm-filters label {
+      transition: transform 0.25s ease, opacity 0.25s ease;
     }
 
     /* Override inline styles for status info child divs to ensure two-column layout */
