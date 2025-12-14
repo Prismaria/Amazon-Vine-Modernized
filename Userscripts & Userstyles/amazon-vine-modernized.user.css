@@ -1,0 +1,2744 @@
+/* ==UserStyle==
+@name           Amazon Vine Modernized
+@namespace      github.com/openstyles/stylus
+@version        0.1.0
+@description    Modernizes the Amazon Vine UI for a cleaner, more accessible experience.
+@author         Your Name
+==/UserStyle== */
+
+@-moz-document regexp("https?://www\\.amazon\\.[^/]+/vine(/.*)?") {
+
+
+        /* Fade-in animation for key elements */
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        /* Modern Search Bar (toggleable shadow/outline) */
+        
+        /* Default: original outline style */
+        .vvp-container-search.vvp-container-right-align .a-search {
+          border: 1px solid #888 !important;
+          box-shadow: none !important;
+          border-radius: 24px !important;
+          background: inherit !important;
+          padding: 0 !important;
+          transition: box-shadow 0.2s, border 0.2s;
+          position: relative !important;
+          display: flex !important;
+          align-items: center !important;
+          width: 100% !important;
+          max-width: 600px !important;
+          overflow: hidden !important;
+        }
+        
+        .vvp-container-search.vvp-container-right-align .a-search:hover {
+          border-color: #619EE7 !important;
+        }
+        
+        .vvp-container-search.vvp-container-right-align input[type="search"] {
+          border: none !important;
+          outline: none !important;
+          background: inherit !important;
+          color: inherit !important;
+          height: 48px !important;
+          font-size: 16px !important;
+          border-radius: 24px !important;
+          padding: 0 20px 0 52px !important;
+          flex: 1 1 0% !important;
+          box-sizing: border-box !important;
+          box-shadow: none !important;
+          transition: background 0.2s, color 0.2s;
+        }
+        
+        /* Modern shadow style (enabled by .modern-search-shadow) */
+        .vvp-container-search.modern-search-shadow .a-search {
+          border: none !important;
+          box-shadow: 0 2px 8px 0 rgba(0,0,0,0.45) !important;
+          border-radius: 24px !important;
+          background: inherit !important;
+          padding: 0 !important;
+          transition: box-shadow 0.2s;
+          position: relative !important;
+          display: flex !important;
+          align-items: center !important;
+          width: 100% !important;
+          max-width: 600px !important;
+          overflow: hidden !important;
+        }
+        
+        .vvp-container-search.modern-search-shadow .a-search:hover {
+          box-shadow: 0 6px 24px 0 rgba(0,0,0,0.32) !important;
+        }
+        
+        /* Search Button (shadow toggle) */
+        .vvp-container-search #vvp-search-button.a-button-search {
+          height: 48px !important;
+          border-radius: 24px !important;
+          min-width: 100px !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          border: none !important;
+          margin-left: 8px !important;
+          background: #ffce12 !important;
+          transition: background 0.2s, box-shadow 0.2s;
+          box-shadow: none !important;
+        }
+        
+        .vvp-container-search.modern-search-shadow #vvp-search-button.a-button-search {
+          box-shadow: 0 2px 8px 0 rgba(0,0,0,0.45) !important;
+        }
+        
+        .vvp-container-search.modern-search-shadow #vvp-search-button.a-button-search:hover {
+          box-shadow: 0 6px 24px 0 rgba(0,0,0,0.32) !important;
+        }
+        
+        .vvp-container-search #vvp-search-button.a-button-search .a-button-inner {
+          height: 100% !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          border-radius: 24px !important;
+        }
+        
+        .vvp-container-search #vvp-search-button.a-button-search .a-button-input {
+          height: 100% !important;
+          min-width: 100px !important;
+          font-size: 16px !important;
+          background: transparent !important;
+          color: #222 !important;
+          border: none !important;
+          cursor: pointer !important;
+          border-radius: 24px !important;
+          padding: 0 24px !important;
+        }
+        
+        .vvp-container-search #vvp-search-button.a-button-search .a-button-text {
+          font-size: 14px !important;
+          color: #222 !important;
+          font-weight: bold !important;
+          letter-spacing: 0.03em !important;
+          border-radius: 24px !important;
+        }
+        
+        /* Modernize filter tab buttons */
+        #vvp-items-button-container {
+          display: flex !important;
+          justify-content: center !important;
+          gap: 12px !important;
+          margin-bottom: 24px !important;
+          padding: 10px 0 !important;
+          /* Apply fade-in animation */
+          animation: fadeIn 0.5s ease-out 0.1s backwards !important;
+        }
+        
+        /* Keyframe for center-reveal underline animation */
+        @keyframes underlineReveal {
+          from {
+            width: 0;
+          }
+          to {
+            width: 100%;
+          }
+        }
+        
+        /* Remove the outer boxy container style from the buttons */
+        .vvp-items-button,
+        .vvp-items-button:hover,
+        .vvp-items-button:focus,
+        .vvp-items-button.a-button-focus {
+          background: none !important;
+          border: none !important;
+          box-shadow: none !important;
+          padding: 0 !important; /* Remove default padding that can cause layout shifts */
+        }
+        
+        .vvp-items-button .a-button-inner {
+          background: transparent !important;
+          border: none !important;
+          border-radius: 0 !important;
+          transition: all 0.2s ease !important;
+          padding: 0 !important;
+          position: relative !important;
+          outline: none !important;
+          box-shadow: none !important;
+        }
+        
+        .vvp-items-button .a-button-text {
+          color: #444 !important; /* Near black for inactive */
+          text-decoration: none !important;
+          display: inline-block !important;
+          padding: 8px 16px !important;
+          font-weight: normal !important;
+          position: relative !important;
+        }
+        
+        /* Underline pseudo-element for hover animation */
+        .vvp-items-button:not(.a-button-selected) .a-button-text::after {
+          content: '' !important;
+          position: absolute !important;
+          bottom: 2px !important;
+          left: 50% !important;
+          transform: translateX(-50%) !important;
+          width: 0 !important;
+          height: 3px !important;
+          background: #659C43 !important;
+          transition: width 0.3s ease !important;
+        }
+        
+        /* Hover state for non-selected buttons - reveal underline from center */
+        .vvp-items-button:not(.a-button-selected) .a-button-inner:hover .a-button-text::after {
+          width: 80% !important;
+        }
+        
+        .vvp-items-button:not(.a-button-selected) .a-button-inner:hover .a-button-text {
+          color: #659C43 !important;
+        }
+        
+        /* Selected state - bold underline, black text */
+        .vvp-items-button.a-button-selected .a-button-inner {
+          background: transparent !important;
+          border: none !important;
+        }
+        
+        .vvp-items-button.a-button-selected .a-button-text {
+          color: #000 !important;
+          font-weight: bold !important;
+        }
+        
+        /* Active tab underline indicator */
+        .vvp-items-button.a-button-selected .a-button-text::after {
+          content: '' !important;
+          position: absolute !important;
+          bottom: 2px !important;
+          left: 50% !important;
+          transform: translateX(-50%) !important;
+          width: 80% !important;
+          height: 3px !important;
+          background: #659C43 !important;
+        }
+        
+        /* Disabled/inactive state for buttons */
+        .vvp-items-button .a-button-text[aria-disabled="true"],
+        .vvp-items-button .a-button-inner[aria-disabled="true"],
+        .vvp-items-button[aria-disabled="true"] .a-button-text {
+          color: #888 !important;
+          opacity: 1 !important;
+        }
+        
+        /* Remove default Amazon focus ring */
+        .vvp-items-button .a-button-inner:focus {
+          box-shadow: none !important;
+        }
+        
+        /* Fade-in for sidebar, product grid, and pagination */
+        #vvp-filter-container {
+          background: none !important;
+          border-radius: 0 !important;
+          box-shadow: none !important;
+          padding: 8px 0 8px 0 !important;
+          margin: 0 24px 0 0 !important;
+          display: flex !important;
+          flex-direction: column !important;
+          align-items: stretch !important;
+          position: relative !important;
+          animation: fadeIn 0.5s ease-out 0.3s backwards !important;
+        }
+        
+        #vvp-browse-nodes-container {
+          display: flex !important;
+          flex-direction: column !important;
+          gap: 2px !important;
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+        
+        #vvp-browse-nodes-container > p {
+          margin-bottom: 8px !important;
+          font-size: 1em !important;
+          padding: 0 2px !important;
+        }
+        
+        .parent-node {
+          display: flex !important;
+          align-items: center !important;
+          padding: 0 !important;
+          border-radius: 8px !important;
+          margin: 0 !important;
+          min-height: unset !important;
+          transition: background 0.18s;
+        }
+        
+        .parent-node:hover, .parent-node.active {
+          background: #f5f7fa !important;
+        }
+        
+        .parent-node .a-link-normal {
+          flex: 1 1 auto !important;
+          font-weight: 600 !important;
+          color: #222 !important;
+          font-size: 0.98em !important;
+          padding: 6px 0 6px 6px !important;
+          border-radius: 8px !important;
+          text-decoration: none !important;
+          transition: color 0.18s;
+          margin: 0 !important;
+          box-sizing: border-box !important;
+          width: 100% !important;
+          overflow: hidden !important;
+          text-overflow: ellipsis !important;
+          white-space: nowrap !important;
+        }
+        
+        .parent-node .a-link-normal:hover, .parent-node .a-link-normal:focus {
+          color: #619EE7 !important;
+          background: #eaf3fc !important;
+        }
+        
+        .parent-node.active .a-link-normal {
+          color: #fff !important;
+          background: #619EE7 !important;
+        }
+        
+        .parent-node span {
+          color: #888 !important;
+          font-size: 0.95em !important;
+          margin-left: 6px !important;
+          padding-right: 2px !important;
+        }
+        
+        #vvp-items-grid-container > p, /* "Showing 1-36 of..." text */
+        #vvp-items-grid, /* The grid of product cards */
+        #vvp-items-grid-container .a-pagination { /* Pagination controls */
+          animation: fadeIn 0.5s ease-out 0.4s backwards !important;
+        }
+        
+        /* Hide nav-subnav (deals bar) */
+        #nav-subnav {
+          display: none !important;
+        }
+        
+        /* --- Modern Material Design Orders Table (non-destructive) --- */
+        /* All vvp-orders-table and heading-top table modifications have been removed below */
+
+        /* --- Modernize Reviews Page --- */
+        
+        /* Main container for the Reviews tab content */
+        div[data-a-name="vine-reviews"] .vvp-tab-content {
+          border: none !important;
+          padding: 8px 4px !important;
+        }
+        
+        /* Filter buttons (Awaiting Review / Reviewed) */
+        #vvp-review-button-container {
+          display: flex !important;
+          justify-content: flex-start !important;
+          gap: 12px !important;
+          margin: 0 12px 24px 12px !important;
+          padding: 10px 0 !important;
+          animation: fadeIn 0.5s ease-out 0.1s backwards !important;
+        }
+
+        /* Remove the outer boxy container style from the review filter buttons */
+        #vvp-review-button-container .a-button-toggle {
+          background: none !important;
+          border: none !important;
+          box-shadow: none !important;
+          padding: 0 !important; /* Remove default padding that can cause layout shifts */
+        }
+
+        #vvp-review-button-container .a-button-toggle .a-button-inner {
+          background: transparent !important;
+          border: none !important;
+          border-radius: 0 !important;
+          transition: all 0.2s ease !important;
+          padding: 0 !important;
+          position: relative !important;
+          outline: none !important;
+          box-shadow: none !important;
+        }
+
+        #vvp-review-button-container .a-button-toggle .a-button-text {
+          color: #444 !important; /* Near black for inactive */
+          text-decoration: none !important;
+          display: inline-block !important;
+          padding: 8px 16px !important;
+          font-weight: normal !important;
+          position: relative !important;
+        }
+
+        /* Underline pseudo-element for hover animation */
+        #vvp-review-button-container .a-button-toggle:not(.a-button-selected) .a-button-text::after {
+          content: '' !important;
+          position: absolute !important;
+          bottom: 2px !important;
+          left: 50% !important;
+          transform: translateX(-50%) !important;
+          width: 0 !important;
+          height: 3px !important;
+          background: #659C43 !important;
+          transition: width 0.3s ease !important;
+        }
+
+        /* Hover state for non-selected buttons - reveal underline from center */
+        #vvp-review-button-container .a-button-toggle:not(.a-button-selected) .a-button-inner:hover .a-button-text::after {
+          width: 80% !important;
+        }
+
+        #vvp-review-button-container .a-button-toggle:not(.a-button-selected) .a-button-inner:hover .a-button-text {
+          color: #659C43 !important;
+        }
+
+        /* Selected state - bold underline, black text */
+        #vvp-review-button-container .a-button-toggle.a-button-selected .a-button-inner {
+          background: transparent !important;
+          border: none !important;
+        }
+
+        #vvp-review-button-container .a-button-toggle.a-button-selected .a-button-text {
+          color: #000 !important;
+          font-weight: bold !important;
+        }
+
+        /* Active tab underline indicator */
+        #vvp-review-button-container .a-button-toggle.a-button-selected .a-button-text::after {
+          content: '' !important;
+          position: absolute !important;
+          bottom: 2px !important;
+          left: 50% !important;
+          transform: translateX(-50%) !important;
+          width: 80% !important;
+          height: 3px !important;
+          background: #659C43 !important;
+        }
+
+        /* Disabled/inactive state for buttons */
+        #vvp-review-button-container .a-button-toggle .a-button-text[aria-disabled="true"],
+        #vvp-review-button-container .a-button-toggle .a-button-inner[aria-disabled="true"],
+        #vvp-review-button-container .a-button-toggle[aria-disabled="true"] .a-button-text {
+          color: #888 !important;
+          opacity: 1 !important;
+        }
+
+        /* Remove default Amazon focus ring */
+        #vvp-review-button-container .a-button-toggle .a-button-inner:focus {
+          box-shadow: none !important;
+        }
+        
+        /* Reviews heading (reserved for future stylizations) */
+        div[data-a-name="vine-reviews"] .vvp-reviews-table--heading-top h3,
+        div[data-a-name="orders"] .vvp-orders-table--heading-top h3 {}
+
+        /* Reviews and Orders table (reserved for future stylizations) */
+        div[data-a-name="vine-reviews"] .vvp-reviews-table,
+        div[data-a-name="orders"] .vvp-orders-table {}
+
+        /* Reviews and Orders table rows (reserved for future stylizations) */
+        div[data-a-name="vine-reviews"] .vvp-reviews-table tbody tr,
+        div[data-a-name="orders"] .vvp-orders-table tbody tr {}
+
+        /* Reviews and Orders table cells (reserved for future stylizations) */
+        div[data-a-name="vine-reviews"] .vvp-reviews-table th,
+        div[data-a-name="vine-reviews"] .vvp-reviews-table td,
+        div[data-a-name="orders"] .vvp-orders-table th,
+        div[data-a-name="orders"] .vvp-orders-table td {}
+
+        /* Reviews and Orders table last row cells (reserved for future stylizations) */
+        div[data-a-name="vine-reviews"] .vvp-reviews-table tr:last-child td,
+        div[data-a-name="orders"] .vvp-orders-table tr:last-child td {}
+        
+        /* "Review item" button */
+        div[data-a-name="vine-reviews"] .vvp-reviews-table .a-button-primary .a-button-inner {
+          border-radius: 20px !important;
+          border: 1px solid #c89617 !important;
+
+          box-shadow: none !important;
+          transition: all 0.2s ease !important;
+        }
+        
+        div[data-a-name="vine-reviews"] .vvp-reviews-table .a-button-primary .a-button-inner:hover {
+
+          border-color: #e4ae1a !important;
+        }
+        
+        div[data-a-name="vine-reviews"] .vvp-reviews-table .a-button-primary .a-button-text {
+          color: #fff !important;
+          font-weight: normal !important;
+          text-decoration: none !important;
+        }
+        
+        div[data-a-name="vine-reviews"] .vvp-reviews-table .a-button-primary .a-button-inner .a-button-text {
+          color: var(--tab-bg) !important;
+        }
+        div[data-a-name="vine-reviews"] .vvp-reviews-table .a-button-primary .a-button-inner:hover .a-button-text {
+          color: var(--tab-bg) !important;
+        }
+        
+        /* Hide "recently viewed items and featured recommendations" */
+        #rhf {
+          display: none !important;
+        }
+        
+        /* --- Infinite Scroll Indicator --- */
+        #infinite-scroll-indicator {
+          text-align: center;
+          padding: 40px;
+          display: none; /* Hidden by default */
+        }
+        #infinite-scroll-indicator span {
+          font-size: 16px;
+          color: #888;
+          vertical-align: middle;
+        }
+        #infinite-scroll-indicator span::before {
+          content: '';
+          display: inline-block;
+          width: 24px;
+          height: 24px;
+          margin-right: 12px;
+          border: 3px solid rgba(255, 255, 255, 0.2);
+          border-top-color: #fff;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+          vertical-align: middle;
+        }
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+        
+        /* --- Favorites Feature Styles --- */
+        #vvp-favorites-tab a {
+            cursor: pointer;
+        }
+
+        #vvp-favorites-tab.a-active a {
+            /* Style to match other active tabs */
+            color: #c45500;
+            border-bottom-color: #c45500;
+        }
+        
+        #vvp-product-details-img-container {
+            position: relative !important;
+        }
+        
+        .vvp-item-image-container {
+            position: relative;
+            display: inline-block;
+            line-height: 0; /* Removes extra space below the image */
+        }
+        
+        .favorite-btn {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            cursor: pointer;
+            z-index: 10;
+            color: #999; /* Darker gray for better contrast */
+            transition: transform 0.3s ease, color 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .favorite-btn svg {
+            width: 28px;
+            height: 28px;
+            transition: transform 0.3s ease;
+        }
+        
+        .favorite-btn:hover {
+            transform: scale(1.2);
+        }
+        
+        .favorite-btn:hover svg {
+            transform: scale(1.0); /* Prevent double scaling */
+        }
+        
+        .favorite-btn.favorited {
+            color: #ffc107; /* Gold color for favorited */
+        }
+        
+        #vvp-favorites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .a-popover-header {
+            position: relative !important; /* Make it a positioning context */
+        }
+        
+        /* Remove unused details-modal-favorite-btn rules */
+        /* Removed: .details-modal-favorite-btn, .details-modal-favorite-btn:hover, .details-modal-favorite-btn.favorited */
+
+        .vvp-container-search.vvp-container-right-align {
+          display: flex !important;
+          justify-content: center !important;
+          align-items: center !important;
+          gap: 8px !important;
+          width: 100% !important;
+          max-width: none !important;
+          margin: 32px 0 !important;
+          padding: 0 16px !important;
+          box-sizing: border-box !important;
+          float: none !important;
+          animation: fadeIn 0.5s ease-out 0.2s backwards !important;
+        }
+        
+        #vvp-items-grid {
+          display: grid !important;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+          gap: 24px !important;
+          background: none !important;
+          border: none !important;
+          box-shadow: none !important;
+          padding: 0 16px !important;
+          max-width: 100% !important;
+          margin: 0 auto !important;
+        }
+        
+        /* Responsive breakpoints for optimal grid behavior */
+        @media (max-width: 480px) {
+          #vvp-items-grid {
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) !important;
+            gap: 16px !important;
+            padding: 0 12px !important;
+          }
+        }
+        
+        @media (min-width: 481px) and (max-width: 768px) {
+          #vvp-items-grid {
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important;
+            gap: 20px !important;
+          }
+        }
+        
+        @media (min-width: 769px) and (max-width: 1024px) {
+          #vvp-items-grid {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+            gap: 24px !important;
+          }
+        }
+        
+        @media (min-width: 1025px) and (max-width: 1440px) {
+          #vvp-items-grid {
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
+            gap: 28px !important;
+          }
+        }
+        
+        @media (min-width: 1441px) {
+          #vvp-items-grid {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;
+            gap: 32px !important;
+          }
+        }
+        
+        #vvp-items-grid .vvp-item-tile {
+          background: var(--tile-bg, #fff) !important;
+          border: none !important;
+          border-radius: 18px !important;
+          box-shadow: 0 2px 8px 0 rgba(0,0,0,0.10) !important;
+          transition: box-shadow 0.28s cubic-bezier(0.4, 0.0, 0.2, 1), transform 0.28s cubic-bezier(0.4, 0.0, 0.2, 1);
+          margin: 0 !important;
+          padding: 10px 8px 12px 8px !important;
+          position: relative !important;
+          overflow: hidden !important;
+          min-height: 320px !important;
+        }
+        
+        #vvp-items-grid .vvp-item-tile:hover {
+          box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18) !important;
+          z-index: 2 !important;
+          transform: translateY(-2px) scale(1.025);
+        }
+        
+        #vvp-items-grid .vvp-item-image-container,
+        #vvp-items-grid .vh-img-container {
+          margin-bottom: 8px !important;
+        }
+        #vvp-items-grid .vh-img-container img {
+          max-height: none !important;
+          width: 100% !important;
+          object-fit: contain !important;
+          display: block !important;
+          margin: 0 auto !important;
+        }
+        #vvp-items-grid .vvp-item-product-title-container {
+          margin: 12px 0 10px 0 !important;
+          padding: 0 4px !important;
+        }
+        #vvp-items-grid .vvp-item-product-title-container > a {
+          font-weight: bold !important;
+        }
+        #vvp-items-grid .a-truncate-cut {
+          font-size: 13px !important;
+          line-height: 1.3 !important;
+          max-height: 2.8em !important;
+          white-space: normal !important;
+        }
+        #vvp-items-grid .vh-date-added {
+          font-size: 11px !important;
+          margin-bottom: 2px !important;
+        }
+        #vvp-items-grid .vh-btn-container {
+          margin-top: 6px !important;
+        }
+        
+      /* Makes logo transparent for better theme compatibility */
+      #vvp-logo-link img {
+        content: url('https://i.imgur.com/diIZttP.png') !important;
+        height: 80px !important;
+        width: auto !important;
+        object-fit: contain !important;
+        background: none !important;
+        box-shadow: none !important;
+        border: none !important;
+      }
+        
+        /* Modernized Vine Tabs */
+        :root {
+          --tab-bg: inherit;
+          --tab-bg-active: #659C43;
+          --tab-text: inherit;
+          --tab-text-active: #fff;
+          --tab-hover-bg: rgba(0,0,0,0.06);
+        }
+        
+        /* If a dark theme class is present, override for dark mode */
+        body.amazon-vine-dark-theme :root,
+        body.dark :root {
+          --tab-bg: #181a1b;
+          --tab-bg-active: #659C43;
+          --tab-text: #e0e0e0;
+          --tab-text-active: #fff;
+          --tab-hover-bg: rgba(255,255,255,0.08);
+        }
+        
+        /* ===== MODERN STYLE (Default) ===== */
+        body:not(.vvp-legacy-style) .a-tabs[data-action="a-tabs"],
+        body.vvp-modern-style .a-tabs[data-action="a-tabs"] {
+          display: flex !important;
+          gap: 12px !important;
+          justify-content: flex-start !important;
+          align-items: flex-end !important;
+          border-bottom: 1.5px solid #d1d5db !important;
+          background: #EEF0F2 !important;
+          margin: -22px calc(-50vw + 50%) 0 calc(-50vw + 50%) !important;
+          padding: 0px 16px !important;
+          position: relative !important;
+          border-radius: 0 !important;
+          width: 100vw !important;
+          max-width: none !important;
+          transition: all 1s cubic-bezier(0.4,0,0.2,1) !important;
+        }
+
+        /* Monitor page specific: increase upper margins to 0px */
+        body[data-hash="monitor"]:not(.vvp-legacy-style) .a-tabs[data-action="a-tabs"],
+        body[data-hash="monitor"].vvp-modern-style .a-tabs[data-action="a-tabs"] {
+          margin: 0 calc(-50vw + 50%) 0 calc(-50vw + 50%) !important;
+        }
+        
+        /* ===== LEGACY STYLE ===== */
+        body.vvp-legacy-style .a-tabs[data-action="a-tabs"] {
+          display: flex !important;
+          gap: 12px !important;
+          justify-content: flex-start !important;
+          align-items: flex-end !important;
+          border-bottom: 1.5px solid #d1d5db !important;
+          background: #EEF0F2 !important;
+          margin: 30px 0 0 0 !important;
+          padding: 0 !important;
+          position: relative !important;
+          border-radius: 0 !important;
+          transition: all 1s cubic-bezier(0.4,0,0.2,1) !important;
+        }
+        body .a-tabs[data-action="a-tabs"] .a-tab-heading {
+          list-style: none !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          position: relative !important;
+          z-index: 1;
+        }
+        /* ===== MODERN STYLE TABS ===== */
+        body:not(.vvp-legacy-style) .a-tabs[data-action="a-tabs"] .a-tab-heading a,
+        body.vvp-modern-style .a-tabs[data-action="a-tabs"] .a-tab-heading a {
+          display: inline-block !important;
+          padding: 12px 30px 14px 30px !important;
+          border-radius: 0 !important;
+          font-size: 1.13em !important;
+          font-weight: 500 !important;
+          color: var(--tab-text, inherit) !important;
+          background: none !important;
+          text-decoration: none !important;
+          box-shadow: none !important;
+          border: none !important;
+          transition: color 0.18s, font-weight 0.18s;
+          position: relative;
+          top: 1.5px;
+        }
+        
+        /* Modern: Underline pseudo-element for hover animation on inactive tabs */
+        body:not(.vvp-legacy-style) .a-tabs[data-action="a-tabs"] .a-tab-heading:not(.a-active) a::after,
+        body.vvp-modern-style .a-tabs[data-action="a-tabs"] .a-tab-heading:not(.a-active) a::after {
+          content: '' !important;
+          position: absolute !important;
+          bottom: 0 !important;
+          left: 50% !important;
+          transform: translateX(-50%) !important;
+          width: 0 !important;
+          height: 3px !important;
+          background: var(--tab-bg-active, #659C43) !important;
+          transition: width 0.3s ease !important;
+        }
+        
+        body:not(.vvp-legacy-style) .a-tabs[data-action="a-tabs"] .a-tab-heading:not(.a-active) a:hover,
+        body.vvp-modern-style .a-tabs[data-action="a-tabs"] .a-tab-heading:not(.a-active) a:hover {
+          background: none !important;
+          color: var(--tab-bg-active, #659C43) !important;
+        }
+        
+        /* Modern: Hover state - reveal underline from center */
+        body:not(.vvp-legacy-style) .a-tabs[data-action="a-tabs"] .a-tab-heading:not(.a-active) a:hover::after,
+        body.vvp-modern-style .a-tabs[data-action="a-tabs"] .a-tab-heading:not(.a-active) a:hover::after {
+          width: 80% !important;
+        }
+        
+        body:not(.vvp-legacy-style) .a-tabs[data-action="a-tabs"] .a-tab-heading.a-active a,
+        body.vvp-modern-style .a-tabs[data-action="a-tabs"] .a-tab-heading.a-active a {
+          background: none !important;
+          color: #000 !important;
+          font-weight: 700 !important;
+          box-shadow: none !important;
+          border-bottom: none !important;
+          z-index: 2;   
+          top: 1.5px;
+        }
+        
+        /* Modern: Active tab underline indicator */
+        body:not(.vvp-legacy-style) .a-tabs[data-action="a-tabs"] .a-tab-heading.a-active a::after,
+        body.vvp-modern-style .a-tabs[data-action="a-tabs"] .a-tab-heading.a-active a::after {
+          content: '' !important;
+          position: absolute !important;
+          bottom: 0 !important;
+          left: 50% !important;
+          transform: translateX(-50%) !important;
+          width: 80% !important;
+          height: 3px !important;
+          background: var(--tab-bg-active, #659C43) !important;
+        }
+        
+        /* ===== LEGACY STYLE TABS ===== */
+        body.vvp-legacy-style .a-tabs[data-action="a-tabs"] .a-tab-heading a {
+          display: inline-block !important;
+          padding: 12px 30px 14px 30px !important;
+          border-radius: 0 !important;
+          font-size: 1.13em !important;
+          font-weight: 500 !important;
+          color: var(--tab-text, inherit) !important;
+          background: none !important;
+          text-decoration: none !important;
+          box-shadow: none !important;
+          border: none !important;
+          transition: background 0.18s, color 0.18s, font-weight 0.18s, box-shadow 0.18s;
+          position: relative;
+          top: 1.5px;
+        }
+        
+        body.vvp-legacy-style .a-tabs[data-action="a-tabs"] .a-tab-heading:not(.a-active) a:hover {
+          background: var(--tab-hover-bg, rgba(0,0,0,0.06)) !important;
+          color: var(--tab-bg-active, #659C43) !important;
+        }
+        
+        body.vvp-legacy-style .a-tabs[data-action="a-tabs"] .a-tab-heading.a-active a {
+          background: #659C43 !important;
+          color: #fff !important;
+          font-weight: 700 !important;
+          box-shadow: 0 2px 8px 0 rgba(0,0,0,0.10);
+          border-bottom: none !important;
+          z-index: 2;   
+          top: 0;
+        }
+        
+        .vvp-header-links-container {
+          display: flex !important;
+          flex-direction: row !important;
+          justify-content: flex-end !important;
+          align-items: center !important;
+          gap: 18px !important;
+          margin: 0 24px 0 0 !important;
+          padding: 0 !important;
+          list-style: none !important;
+          border: none !important;
+          background: none !important;
+        }
+        .vvp-header-links-container .vvp-header-link {
+          margin: 0 !important;
+          padding: 0 !important;
+          border: none !important;
+          background: none !important;
+          position: relative;
+        }
+        .vvp-header-links-container .vvp-header-link a {
+          display: inline-block !important;
+          padding: 6px 16px !important;
+          border-radius: 999px !important;
+          font-size: 1em !important;
+          color: #225199 !important;
+          background: none !important;
+          text-decoration: none !important;
+          font-weight: 500 !important;
+          min-width: 80px !important;
+          transition: background 0.16s, color 0.16s, font-weight 0.16s;
+          text-align: center !important;
+          font-family: inherit !important;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          letter-spacing: 0.01em;
+        }
+        .vvp-header-links-container .vvp-header-link a:hover,
+        .vvp-header-links-container .vvp-header-link a:focus {
+          background: rgba(0,102,192,0.08) !important;
+          color: #619EE7 !important;
+          font-weight: 700 !important;
+          text-decoration: none !important;
+        }
+        .vvp-header-links-container .vvp-header-link:not(:last-child)::after {
+          content: none !important;
+        }
+        
+        /* ===== MODERN STYLE HEADER ===== */
+        body:not(.vvp-legacy-style) .a-section.vvp-header-margins,
+        body.vvp-modern-style .a-section.vvp-header-margins {
+          background: #EEF0F2 !important;
+          margin: -16px calc(-50vw + 50%) 0 calc(-50vw + 50%) !important;
+          padding: 42px 64px 24px 32px !important;
+          width: 100vw !important;
+          max-width: none !important;
+          position: relative !important;
+        }
+        
+        /* ===== LEGACY STYLE HEADER ===== */
+        body.vvp-legacy-style .a-section.vvp-header-margins {
+          background: none !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          width: auto !important;
+          max-width: none !important;
+          position: relative !important;
+        }
+        
+        /* Hide Vine Help and Feedback header links */
+        #vvp-vine-help-link,
+        #vvp-feedback-link {
+          display: none !important;
+        }
+        
+        /* Restore original Orders page styles (non-table) */
+        
+        /* Main container for the Orders tab content */
+        div[data-a-name="orders"] .vvp-tab-content {
+          border: none !important;
+          padding: 8px 4px !important;
+        }
+        
+        /* Fully hide the top nav bar by default */
+        #navbar, #nav-belt {
+          position: fixed !important;
+          left: 0 !important;
+          right: 0 !important;
+          z-index: 10000 !important;
+          width: 100% !important;
+          transition: transform 0.3s ease, opacity 0.3s ease !important;
+        }
+        
+        #nav-belt {
+          top: 0 !important;
+          height: 56px !important; /* Match this to your search bar's height */
+          min-height: 56px !important;
+          display: flex !important;
+          align-items: center !important;
+        }
+        
+        #nav-belt > .nav-left,
+        #nav-belt > .nav-fill,
+        #nav-belt > .nav-right {
+          height: 100% !important;
+          display: flex !important;
+          align-items: center !important;
+        }
+        
+        #navbar {
+          top: 0 !important;
+        }
+        
+        #navbar, #nav-belt {
+          transform: translateY(-100%) !important;
+          opacity: 0 !important;
+        }
+        
+        #navbar.show-nav, #nav-belt.show-nav {
+          transform: translateY(0) !important;
+          opacity: 1 !important;
+        }
+        
+        /* Remove nav-main from all autohide logic */
+        #nav-main {
+          display: none !important;
+        }
+        
+        /* Add some space for fixed nav */
+        body, #a-page {
+          padding-top: 0 !important;
+        }
+        
+        #navbar:focus-within,
+        #nav-belt:focus-within,
+        #nav-search:focus-within,
+        #nav-search input:focus {
+          transform: translateY(0) !important;
+          opacity: 1 !important;
+        }
+        
+        .navLeftFooter.nav-sprite-v1, .navLeftFooter.nav-sprite-v1 ~ * {
+          display: none !important;
+        }
+        
+        @media (max-width: 900px) {
+          /* Tab bar: allow wrapping into multiple rows */
+          body .a-tabs[data-action="a-tabs"] {
+            flex-wrap: wrap !important;
+            overflow-x: visible !important;
+            max-height: none !important;
+          }
+        }
+        @media (max-width: 768px) {
+          /* Tab bar: wrap into rows, not just scroll */
+          body .a-tabs[data-action="a-tabs"] {
+            flex-wrap: wrap !important;
+            overflow-x: visible !important;
+            max-height: none !important;
+          }
+          body .a-tabs[data-action="a-tabs"] .a-tab-heading a {
+            min-width: 90px !important;
+            white-space: normal !important;
+          }
+          /* Search bar: prevent squashing, allow wrapping */
+          .vvp-container-search.vvp-container-right-align {
+            flex-wrap: wrap !important;
+            gap: 8px !important;
+          }
+          .vvp-container-search.vvp-container-right-align .a-search {
+            min-width: 180px !important;
+            flex: 1 1 180px !important;
+          }
+          .vvp-container-search.vvp-container-right-align input[type="search"] {
+            min-width: 120px !important;
+            flex: 1 1 120px !important;
+          }
+          .vvp-container-search #vvp-search-button.a-button-search {
+            min-width: 70px !important;
+            flex: 0 0 auto !important;
+          }
+        }
+        @media (max-width: 480px) {
+          /* Tab bar: wrap, reduce min-width */
+          body .a-tabs[data-action="a-tabs"] {
+            flex-wrap: wrap !important;
+            overflow-x: visible !important;
+            max-height: none !important;
+          }
+          body .a-tabs[data-action="a-tabs"] .a-tab-heading a {
+            min-width: 70px !important;
+            white-space: normal !important;
+            font-size: 0.92em !important;
+          }
+          /* Search bar: stack vertically if needed */
+          .vvp-container-search.vvp-container-right-align {
+            flex-direction: column !important;
+            align-items: stretch !important;
+            gap: 6px !important;
+          }
+          .vvp-container-search.vvp-container-right-align .a-search {
+            min-width: 120px !important;
+            width: 100% !important;
+          }
+          .vvp-container-search.vvp-container-right-align input[type="search"] {
+            min-width: 80px !important;
+            width: 100% !important;
+          }
+          .vvp-container-search #vvp-search-button.a-button-search {
+            min-width: 48px !important;
+            width: 100% !important;
+            margin-left: 0 !important;
+          }
+        }
+        @media (max-width: 600px) {
+          body .a-tabs[data-action="a-tabs"] {
+            flex-wrap: wrap !important;
+            justify-content: flex-start !important;
+            align-items: stretch !important;
+            width: 100% !important;
+            min-width: 0 !important;
+            margin: 8px 0 0 0 !important;
+            padding: 0 2px !important;
+            gap: 0 !important;
+          }
+          body .a-tabs[data-action="a-tabs"] .a-tab-heading {
+            flex: 1 1 50% !important;
+            max-width: 50% !important;
+            min-width: 120px !important;
+            margin-bottom: 4px !important;
+            display: flex !important;
+            justify-content: center !important;
+          }
+          body .a-tabs[data-action="a-tabs"] .a-tab-heading a {
+            font-size: 0.92em !important;
+            padding: 8px 2px 10px 2px !important;
+            width: 100% !important;
+            min-width: 0 !important;
+            text-align: center !important;
+            box-sizing: border-box !important;
+          }
+        }
+        @media (max-width: 400px) {
+          body {
+            width: 100vw !important;
+            overflow-x: hidden !important;
+            box-sizing: border-box !important;
+            margin: 0 !important;
+            padding: 0 !important;
+          }
+          body .a-tabs[data-action="a-tabs"] {
+            width: 100vw !important;
+            min-width: 0 !important;
+            max-width: 100vw !important;
+            box-sizing: border-box !important;
+            flex-direction: column !important;
+            flex-wrap: nowrap !important;
+            align-items: stretch !important;
+            gap: 0 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            overflow-x: hidden !important;
+          }
+          body .a-tabs[data-action="a-tabs"] .a-tab-heading {
+            display: block !important;
+            width: 100% !important;
+            min-width: 0 !important;
+            max-width: 100% !important;
+            margin: 0 0 6px 0 !important;
+            box-sizing: border-box !important;
+          }
+          body .a-tabs[data-action="a-tabs"] .a-tab-heading a {
+            display: block !important;
+            width: 100% !important;
+            min-width: 0 !important;
+            max-width: 100% !important;
+            font-size: 0.88em !important;
+            padding: 10px 2px !important;
+            text-align: left !important;
+            box-sizing: border-box !important;
+            white-space: normal !important;
+            word-break: break-word !important;
+            overflow-x: hidden !important;
+          }
+        }
+
+        /* Linked text color */
+        a,
+        a:link,
+        a:visited {
+          color: #659C43 !important;
+        }
+
+        #vvp-product-details-modal--product-title {
+          font-weight: bold !important;
+        }
+
+
+        /* Modernized: Notification Monitor for #monitor page - new DOM structure */
+        body[data-hash="monitor"] #vh-notifications-monitor-header {
+          background: none;
+          border-radius: 0;
+          box-shadow: none;
+          padding: 0;
+          margin: 0;
+          max-width: none;
+          min-width: 0;
+          font-family: inherit;
+          display: block;
+          flex-direction: unset;
+          align-items: unset;
+          position: static;
+        }
+
+        /* Main header UI container - modern card design */
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui {
+          background: var(--vh-card-bg, #fff) !important;
+          color: var(--vh-card-text, #1a1a1a) !important;
+          border-radius: 18px;
+          box-shadow: 0 4px 20px 0 rgba(30, 60, 120, 0.15);
+          padding: 20px 24px 16px 24px;
+          /* Centered container that shrinks/grows to fit its contents */
+          margin: 0 auto 32px auto !important;
+          min-width: 320px;
+          font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+          display: block !important; /* Override inline display:flex - use block + width:fit-content so margin:auto centers */
+          /* Internal stacks remain flex within child rows; the card itself can be block */
+          position: relative;
+          transform: none;
+          width: fit-content !important;
+          max-width: none !important; /* Override inline max-width: 500px that causes square collapse */
+          box-sizing: border-box;
+          transition: box-shadow 0.2s ease;
+        }
+
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui:hover {
+          box-shadow: 0 6px 28px 0 rgba(30, 60, 120, 0.20);
+        }
+
+
+
+        /* Header row styling - contains icon, title, and user tier info within vh-notifications-monitor-header-ui */
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui .vh-header-row {
+          display: flex;
+          align-items: flex-end;
+          margin-top: 0;
+          margin-bottom: 0;
+          margin-right: 0;
+          width: auto; /* allow container to size to content */
+          gap: 10px;
+          position: relative;
+          z-index: 10;
+          flex-wrap: wrap;
+        }
+        
+        @media (max-width: 900px) {
+          body[data-hash="monitor"] #vh-notifications-monitor-header-ui .vh-header-row {
+            margin-right: 0;
+          }
+        }
+
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui .vh-header-row .vh-icon-48.vh-icon-vh-48 {
+          flex-shrink: 0;
+          margin-right: 0;
+        }
+
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui .vh-header-row h2 {
+          font-size: 1.8rem;
+          font-weight: 700;
+          color: #1a1a1a;
+          margin: 0;
+          padding: 0;
+          letter-spacing: 0.01em;
+          line-height: 1.2;
+          flex-shrink: 1;
+          max-width: 60%;
+          word-wrap: break-word;
+          overflow-wrap: break-word;
+        }
+        
+        @media (max-width: 900px) {
+          body[data-hash="monitor"] #vh-notifications-monitor-header-ui .vh-header-row h2 {
+            font-size: 1.4rem;
+            max-width: 100%;
+          }
+        }
+        
+        @media (max-width: 600px) {
+          body[data-hash="monitor"] #vh-notifications-monitor-header-ui .vh-header-row h2 {
+            font-size: 1.2rem;
+          }
+        }
+
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui .vh-header-row span {
+          display: flex;
+          align-items: flex-end;
+          margin-left: auto;
+        }
+
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui .vh-header-row #user-tier-info {
+          color: #444;
+          font-size: 1em;
+          margin: 0;
+        }
+
+        /* Override inline styles for status info child divs to ensure two-column layout */
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui div[style*="display: flex; flex-wrap: wrap; gap: 10px; width: 100%; max-width: 600px"] > div {
+          flex: none !important;
+          max-width: none !important;
+          min-width: none !important;
+          margin-bottom: 0 !important;
+        }
+
+        /* Constrain status container to prevent overflow */
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui div[style*="flex: 1 1 300px"] {
+          max-width: 300px !important;
+          min-width: 180px !important;
+          width: 300px !important;
+          flex: 0 0 300px !important;
+          overflow: hidden !important;
+          box-sizing: border-box !important;
+        }
+
+        /* Status info div - prevent overlap with header row */
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui div[style*="display: flex; flex-wrap: wrap; gap: 10px; width: 100%; max-width: 600px"] {
+          margin-top: 4px;
+          padding-top: 2px;
+          clear: both;
+          position: relative;
+          z-index: 5;
+          width: 100%;
+          max-width: 100%;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 20px;
+          align-items: start;
+        }
+        
+        @media (max-width: 600px) {
+          body[data-hash="monitor"] #vh-notifications-monitor-header-ui div[style*="display: flex; flex-wrap: wrap; gap: 10px; width: 100%; max-width: 600px"] {
+            grid-template-columns: 1fr;
+            gap: 15px;
+          }
+        }
+
+        /* Main content area styling - 3 column grid layout */
+        /* Use minmax() to ensure columns maintain minimum widths and prevent premature collapse */
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui > div[style*="flex-grow: 1"] {
+          background: none !important;
+          color: inherit !important;
+          border-radius: 0;
+          box-shadow: none;
+          padding: 0;
+          margin: 0;
+          max-width: 100% !important;
+          min-width: 0;
+          font-family: inherit;
+          display: grid !important;
+          /* Column 1: left stack (header + status) - flexible sizing, min 250px */
+          /* Column 2: controls - flexible sizing, min 240px to prevent squashing */
+          /* Column 3: filters - allow slight compression from 520px to 480px if needed */
+          grid-template-columns: minmax(250px, auto) minmax(240px, auto) minmax(480px, 520px) !important;
+          grid-template-rows: auto auto !important;
+          gap: 12px !important;
+          position: static;
+          box-sizing: border-box !important;
+          overflow: hidden !important;
+        }
+        
+        /* Header row - column 1, row 1 */
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui > div[style*="flex-grow: 1"] > .vh-header-row {
+          grid-column: 1 !important;
+          grid-row: 1 !important;
+        }
+        
+        /* Status info section - column 1, row 2 */
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui > div[style*="flex-grow: 1"] > div[style*="display: flex; flex-wrap: wrap; gap: 10px; width: 100%; max-width: 600px"] {
+          grid-column: 1 !important;
+          grid-row: 2 !important;
+        }
+        
+        /* Controls wrapper - column 2, spans rows 1-2 */
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui > div[style*="flex-grow: 1"] > div[style*="display: flex; flex-wrap: wrap; gap: 5px; margin: 5px 0"] {
+          grid-column: 2 !important;
+          grid-row: 1 / 3 !important;
+          min-width: 240px !important;                 /* Prevent controls from getting squashed */
+          width: 100% !important;                     /* Take full column width */
+        }
+        
+        /* Filters section - column 3, spans rows 1-2 */
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui > div[style*="flex-grow: 1"] > #vh-nm-filters {
+          grid-column: 3 !important;
+          grid-row: 1 / 3 !important;
+          width: 100% !important;                     /* Take full column width */
+          min-width: 480px !important;                /* Allow slight compression from 520px if needed for 1080p */
+          max-width: 520px !important;                /* Preferred width - grid column minmax handles this */
+          box-sizing: border-box !important;
+          overflow: hidden !important;
+          flex: none !important;                      /* Remove flex when in grid - flex doesn't work in grid */
+        }
+        
+        /* Responsive: When space is tight, stack filters below, keep controls adjacent */
+        /* Breakpoint at 1100px - only collapse when truly necessary (accounts for padding/gaps) */
+        @media (max-width: 1100px) and (min-width: 769px) {
+          body[data-hash="monitor"] #vh-notifications-monitor-header-ui > div[style*="flex-grow: 1"] {
+            /* Switch to 2 columns: left stack + controls side by side, filters below */
+            /* Maintain minimum widths to prevent squashing */
+            grid-template-columns: minmax(250px, auto) minmax(240px, auto) !important;
+            grid-template-rows: auto auto auto !important;
+          }
+          
+          /* Header stays column 1, row 1 */
+          body[data-hash="monitor"] #vh-notifications-monitor-header-ui > div[style*="flex-grow: 1"] > .vh-header-row {
+            grid-column: 1 !important;
+            grid-row: 1 !important;
+          }
+          
+          /* Status stays column 1, row 2 */
+          body[data-hash="monitor"] #vh-notifications-monitor-header-ui > div[style*="flex-grow: 1"] > div[style*="display: flex; flex-wrap: wrap; gap: 10px; width: 100%; max-width: 600px"] {
+            grid-column: 1 !important;
+            grid-row: 2 !important;
+          }
+          
+          /* Controls stay column 2, spans rows 1-2 */
+          body[data-hash="monitor"] #vh-notifications-monitor-header-ui > div[style*="flex-grow: 1"] > div[style*="display: flex; flex-wrap: wrap; gap: 5px; margin: 5px 0"] {
+            grid-column: 2 !important;
+            grid-row: 1 / 3 !important;
+          }
+          
+          /* Filters move to row 3, span both columns */
+          body[data-hash="monitor"] #vh-notifications-monitor-header-ui > div[style*="flex-grow: 1"] > #vh-nm-filters {
+            grid-column: 1 / -1 !important;
+            grid-row: 3 !important;
+            margin-left: 0 !important;
+          }
+        }
+        
+        /* Responsive: Mobile portrait - everything stacks */
+        @media (max-width: 768px) {
+          body[data-hash="monitor"] #vh-notifications-monitor-header-ui > div[style*="flex-grow: 1"] {
+            grid-template-columns: 1fr !important;
+            grid-template-rows: auto !important;
+          }
+          
+          /* Header - row 1 */
+          body[data-hash="monitor"] #vh-notifications-monitor-header-ui > div[style*="flex-grow: 1"] > .vh-header-row {
+            grid-column: 1 !important;
+            grid-row: 1 !important;
+          }
+          
+          /* Status - row 2 */
+          body[data-hash="monitor"] #vh-notifications-monitor-header-ui > div[style*="flex-grow: 1"] > div[style*="display: flex; flex-wrap: wrap; gap: 10px; width: 100%; max-width: 600px"] {
+            grid-column: 1 !important;
+            grid-row: 2 !important;
+          }
+          
+          /* Controls - row 3 */
+          body[data-hash="monitor"] #vh-notifications-monitor-header-ui > div[style*="flex-grow: 1"] > div[style*="display: flex; flex-wrap: wrap; gap: 5px; margin: 5px 0"] {
+            grid-column: 1 !important;
+            grid-row: 3 !important;
+          }
+          
+          /* Filters - row 4 */
+          body[data-hash="monitor"] #vh-notifications-monitor-header-ui > div[style*="flex-grow: 1"] > #vh-nm-filters {
+            grid-column: 1 !important;
+            grid-row: 4 !important;
+            margin-left: 0 !important;
+          }
+        }
+
+        /* Date and status information styling */
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui .vh_flex_column {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+        }
+
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui strong {
+          color: #1a1a1a;
+          font-weight: 600;
+          font-size: 1em;
+        }
+
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui span {
+          color: #444;
+          font-size: 1em;
+        }
+
+        /* Notice boxes styling */
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui .notice {
+          background: #f7f8fa;
+          border-radius: 8px;
+          padding: 7px 14px;
+          margin-bottom: 3px;
+          font-size: 0.98em;
+          color: #1a1a1a;
+          display: flex;
+          align-items: center;
+          box-shadow: 0 1px 4px 0 rgba(30,60,120,0.06);
+          min-width: 0 !important;
+          max-width: 100% !important;
+          width: 100% !important;
+          overflow: hidden !important;
+          box-sizing: border-box !important;
+        }
+
+        /* Constrain notice inner div to prevent overflow (but exclude switch) */
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui .notice > div:not(.vh-switch-32) {
+          min-width: 0 !important;
+          flex: 1 1 0% !important;
+          overflow: hidden !important;
+          max-width: 100% !important;
+          word-wrap: normal !important;
+          overflow-wrap: normal !important;
+          font-weight: bold !important;
+          white-space: nowrap !important;
+          line-height: 1.5 !important;
+        }
+
+        /* Make description spans normal weight and ensure inline alignment */
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui .notice > div:not(.vh-switch-32) > span {
+          font-weight: normal !important;
+          display: inline !important;
+          vertical-align: baseline !important;
+        }
+
+        /* Ensure switch icons maintain their original size */
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui .vh-switch-32,
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui .notice .vh-switch-32,
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui .vh-switch-32.vh-icon-switch-on,
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui .vh-switch-32.vh-icon-switch-off,
+        body[data-hash="monitor"] #statusSW .vh-switch-32,
+        body[data-hash="monitor"] #statusWS .vh-switch-32,
+        body[data-hash="monitor"] .notice .vh-switch-32 {
+          width: 32px !important;
+          height: 32px !important;
+          min-width: 32px !important;
+          max-width: 32px !important;
+          min-height: 32px !important;
+          max-height: 32px !important;
+          margin-right: 10px !important;
+          flex: 0 0 32px !important;
+          box-sizing: border-box !important;
+          transform: scale(1) !important;
+        }
+
+        /* Override inline margin on the div containing notification monitor controls */
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui > div[style*="flex-grow: 1"] > div[style*="display: flex; flex-wrap: wrap; gap: 5px; margin: 5px 0"] {
+          margin: 0 !important;
+          width: auto !important;
+        }
+        
+        /* Add spacing between controls and filters when side by side */
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui > div[style*="flex-grow: 1"] > #vh-nm-filters {
+          margin-left: 16px !important;
+        }
+
+        /* Notification monitor controls styling */
+        body[data-hash="monitor"] .vh-notification-monitor-controls {
+          margin-right: 0 !important;
+          margin-left: 0 !important;
+          transform: none;
+          display: grid;
+          grid-template-columns: 7fr 6fr;
+          gap: 4px;
+          width: 100%;
+          min-width: 240px !important;                 /* Prevent controls grid from collapsing */
+        }
+        
+        /* Clear - placed in left column, first row */
+        body[data-hash="monitor"] .vh-notification-monitor-controls > .vh-control-group:nth-child(1) {
+          grid-column: 1;
+          grid-row: 1;
+          min-width: 0;
+        }
+        
+        /* Fetch - placed in right column, first row */
+        body[data-hash="monitor"] .vh-notification-monitor-controls > .vh-control-group:nth-child(2) {
+          grid-column: 2;
+          grid-row: 1;
+          min-width: 0;
+        }
+        
+        /* Feed control - placed in right column, second row */
+        body[data-hash="monitor"] .vh-notification-monitor-controls > .vh-control-group:nth-child(3) {
+          grid-column: 2;
+          grid-row: 2;
+          min-width: 0;
+        }
+        
+        /* Auto truncate - placed in left column, second row */
+        body[data-hash="monitor"] .vh-notification-monitor-controls > .vh-control-group:nth-child(4) {
+          grid-column: 1;
+          grid-row: 2;
+          min-width: 0;
+        }
+        
+        @media (max-width: 900px) {
+          body[data-hash="monitor"] .vh-notification-monitor-controls {
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+          }
+        }
+        
+        @media (max-width: 600px) {
+          body[data-hash="monitor"] .vh-notification-monitor-controls {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        /* Control groups styling */
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui .vh-control-group {
+          background: #f7f8fa;
+          border-radius: 12px;
+          border: 1px solid #e0e6ef;
+          padding: 8px 16px 10px 16px;
+          margin-right: 2px;
+          margin-bottom: 4px;
+          display: flex;
+          flex-direction: column;
+          flex: 1 1 0;
+          min-width: 0;
+          max-width: none;
+          box-shadow: 0 2px 8px 0 rgba(30, 60, 120, 0.08);
+          transition: box-shadow 0.2s ease;
+        }
+
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui .vh-control-group:hover {
+          box-shadow: 0 4px 16px 0 rgba(30, 60, 120, 0.12);
+        }
+        
+        @media (max-width: 900px) {
+          body[data-hash="monitor"] #vh-notifications-monitor-header-ui .vh-control-group {
+            min-width: 0;
+            width: 100%;
+            margin-right: 0;
+          }
+        }
+
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui .vh-control-header {
+          background: none !important;
+          font-weight: bold !important;
+        }
+
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui .vh-control-buttons {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 4px;
+          justify-content: center;
+          align-items: center;
+        }
+        
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui .vh-control-buttons label {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui .vh-control-buttons input[type="button"],
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui .vh-control-buttons input[type="checkbox"] {
+          text-align: center;
+        }
+
+        /* Input and button styling */
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui input[type="button"],
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui input[type="checkbox"] {
+          border: 1.5px solid #e0e6ef;
+          border-radius: 7px;
+          background: #fff;
+          color: #1a1a1a;
+          font-size: 0.98em;
+          padding: 6px 14px;
+          transition: border 0.18s, box-shadow 0.18s;
+          outline: none;
+          box-shadow: none;
+          cursor: pointer;
+          min-width: 0;
+          box-sizing: border-box;
+          word-wrap: break-word;
+          overflow-wrap: break-word;
+        }
+        
+        /* Make "Pause & Buffer Feed" button text smaller */
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui input[name="pauseFeed"],
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui input#pauseFeed {
+          font-size: 0.88em;
+        }
+        
+        @media (max-width: 600px) {
+          body[data-hash="monitor"] #vh-notifications-monitor-header-ui input[type="button"],
+          body[data-hash="monitor"] #vh-notifications-monitor-header-ui input[type="checkbox"] {
+            font-size: 0.88em;
+            padding: 6px 10px;
+          }
+        }
+
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui input[type="button"]:hover {
+          border-color: #5E9BE6;
+          box-shadow: 0 0 0 2px #5E9BE633;
+          background: #f7f8fa;
+        }
+
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui input[type="checkbox"] {
+          width: 18px;
+          height: 18px;
+          margin-right: 4px;
+        }
+
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui select {
+          background: #fff;
+          border: 1.5px solid #e0e6ef;
+          border-radius: 7px;
+          font-size: 0.98em;
+          padding: 6px 12px;
+          color: #1a1a1a;
+          outline: none;
+          transition: border 0.18s, box-shadow 0.18s;
+          box-shadow: none;
+          margin: 0 4px 0 0;
+          min-width: 70px;
+          appearance: none;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+        }
+
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui select:focus {
+          border-color: #5E9BE6;
+          box-shadow: 0 0 0 2px #5E9BE633;
+        }
+
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui option {
+          color: #1a1a1a;
+          background: #fff;
+        }
+
+        /* Filters section styling - now within flex-grow container */
+        body[data-hash="monitor"] #vh-nm-filters {
+          background: #f7f8fa;
+          border-radius: 14px;
+          border: 1px solid #e0e6ef;
+          padding: 24px 28px 18px 28px;
+          min-width: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: stretch;
+          font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+          transform: none;
+          box-shadow: 0 2px 8px 0 rgba(30, 60, 120, 0.08);
+          transition: box-shadow 0.2s ease;
+        }
+
+        body[data-hash="monitor"] #vh-nm-filters:hover {
+          box-shadow: 0 4px 16px 0 rgba(30, 60, 120, 0.12);
+        }
+        
+        @media (max-width: 900px) {
+          body[data-hash="monitor"] #vh-nm-filters {
+            padding: 16px;
+            margin-left: 2vw;
+            margin-right: 2vw;
+          }
+        }
+        
+        @media (max-width: 600px) {
+          body[data-hash="monitor"] #vh-nm-filters {
+            padding: 12px;
+          }
+        }
+
+        /* Filters grid layout - modified to place labels beside controls */
+        body[data-hash="monitor"] #vh-nm-filters > div[style*="display: grid"] {
+          display: grid !important;
+          grid-template-columns: auto 1fr !important;
+          align-items: center !important;
+          gap: 8px 12px !important;
+        }
+
+        body[data-hash="monitor"] #vh-nm-filters > div[style*="display: flex"] {
+          display: flex !important;
+          flex-direction: column;
+          gap: 10px 0 !important;
+        }
+
+        body[data-hash="monitor"] #vh-nm-filters label,
+        body[data-hash="monitor"] #vh-nm-filters select,
+        body[data-hash="monitor"] #vh-nm-filters input[type="text"] {
+          white-space: nowrap !important;
+        }
+
+        body[data-hash="monitor"] #vh-nm-filters label {
+          display: inline-flex !important;
+          align-items: center !important;
+          min-width: 90px;
+          margin-bottom: 0 !important;
+          justify-self: start !important;
+          margin-top: 0 !important;
+        }
+
+        body[data-hash="monitor"] #vh-nm-filters label + * {
+          display: inline-flex !important;
+          align-items: center !important;
+          width: 100%;
+        }
+
+        /* Input and select styling in filters */
+        body[data-hash="monitor"] #vh-nm-filters input[type="text"],
+        body[data-hash="monitor"] #vh-nm-filters select {
+          min-height: 44px !important;
+          padding-top: 10px !important;
+          padding-bottom: 10px !important;
+          font-size: 1.08em !important;
+          box-sizing: border-box !important;
+          max-width: 100% !important;
+          min-width: 0 !important;
+        }
+
+        /* Fall back to full width on small screens */
+        @media (max-width: 720px) {
+          body[data-hash="monitor"] #vh-nm-filters {
+            flex: 1 1 100% !important;
+            width: 100% !important;
+            max-width: 100% !important;
+          }
+        }
+        
+        /* Ensure filter wrapper respects boundaries */
+        body[data-hash="monitor"] #vh-nm-filters > div[style*="display: grid"] {
+          max-width: 100% !important;
+          overflow: hidden !important;
+          box-sizing: border-box !important;
+        }
+        
+        body[data-hash="monitor"] #vh-nm-filters label + * {
+          max-width: 100% !important;
+          min-width: 0 !important;
+        }
+
+        /* Tile size container styling */
+        body[data-hash="monitor"] #vh-nm-tile-size-container {
+          margin-top: 16px;
+        }
+
+        body[data-hash="monitor"] #vh-nm-tile-size-container #openTileSizeTool {
+          background: #f7f8fa;
+          border: 1.5px solid #e0e6ef;
+          border-radius: 7px;
+          padding: 8px 16px;
+          color: #1a1a1a;
+          text-decoration: none;
+          transition: border 0.18s, box-shadow 0.18s;
+          display: inline-block;
+        }
+
+        body[data-hash="monitor"] #vh-nm-tile-size-container #openTileSizeTool:hover {
+          border-color: #5E9BE6;
+          box-shadow: 0 0 0 2px #5E9BE633;
+          background: #fff;
+        }
+
+        body[data-hash="monitor"] #vh-nm-tile-size-container #tileSizeTool {
+          background: #f7f8fa;
+          border: 1.5px solid #e0e6ef;
+          border-radius: 7px;
+          padding: 12px 16px;
+          margin-top: 8px;
+        }
+
+        body[data-hash="monitor"] #vh-nm-tile-size-container #tileSizeTool label {
+          display: block;
+          margin-bottom: 8px;
+          font-size: 0.98em;
+          color: #1a1a1a;
+        }
+
+        body[data-hash="monitor"] #vh-nm-tile-size-container #tileSizeTool input[type="range"] {
+          width: 100%;
+          margin: 4px 0;
+        }
+
+        body[data-hash="monitor"] #vh-nm-tile-size-container #tileSizeTool a {
+          color: #5E9BE6;
+          text-decoration: none;
+          font-size: 0.98em;
+        }
+
+        body[data-hash="monitor"] #vh-nm-tile-size-container #tileSizeTool a:hover {
+          text-decoration: underline;
+        }
+
+        /* Fixed toolbar styling */
+        body[data-hash="monitor"] #fixed-toolbar {
+          background: var(--vh-card-bg, #fff) !important;
+          color: var(--vh-card-text, #1a1a1a) !important;
+          border-radius: 12px;
+          box-shadow: 0 4px 16px 0 rgba(30, 60, 120, 0.15);
+          padding: 12px 16px;
+          border: 1.5px solid #e0e6ef;
+        }
+
+        body[data-hash="monitor"] #fixed-toolbar input[type="button"] {
+          border: 1.5px solid #e0e6ef;
+          border-radius: 7px;
+          background: #fff;
+          color: #1a1a1a;
+          font-size: 0.98em;
+          padding: 6px 14px;
+          transition: border 0.18s, box-shadow 0.18s;
+          outline: none;
+          box-shadow: none;
+          cursor: pointer;
+        }
+
+        body[data-hash="monitor"] #fixed-toolbar input[type="button"]:hover {
+          border-color: #5E9BE6;
+          box-shadow: 0 0 0 2px #5E9BE633;
+          background: #f7f8fa;
+        }
+
+        /* Remove background and color from .a-section.vvp-tab-content for #monitor */
+        body[data-hash="monitor"] .a-section.vvp-tab-content {
+          background: unset !important;
+          color: unset !important;
+          border: none !important;
+          outline: none !important;
+          box-shadow: none !important;
+        }
+
+        /* Ensure all text inherits the card colors */
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui *,
+        body[data-hash="monitor"] #vh-nm-filters * {
+          color: inherit;
+        }
+        
+        /* Prevent text overflow and ensure proper wrapping for all elements in monitor header */
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui * {
+          box-sizing: border-box;
+          word-wrap: break-word;
+          overflow-wrap: break-word;
+          max-width: 100%;
+        }
+
+        /* Exception: status container should not wrap text */
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui div[style*="flex: 1 1 300px"],
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui div[style*="flex: 1 1 300px"] * {
+          word-wrap: normal !important;
+          overflow-wrap: normal !important;
+        }
+        
+        /* Ensure spans and small text elements wrap properly */
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui span,
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui .vh_flex_column span {
+          display: inline-block;
+          max-width: 100%;
+          word-wrap: break-word;
+          overflow-wrap: break-word;
+        }
+
+        /* Exception: descriptionSW and descriptionWS should not wrap */
+        body[data-hash="monitor"] #descriptionSW,
+        body[data-hash="monitor"] #descriptionWS {
+          word-wrap: normal !important;
+          overflow-wrap: normal !important;
+        }
+
+        /* Truncate descriptionSW and descriptionWS text to prevent stretching */
+        body[data-hash="monitor"] #descriptionSW,
+        body[data-hash="monitor"] #descriptionWS {
+          overflow: hidden !important;
+          text-overflow: ellipsis !important;
+          white-space: nowrap !important;
+          max-width: 100% !important;
+          display: inline-block !important;
+          min-width: 0 !important;
+          word-wrap: normal !important;
+          overflow-wrap: normal !important;
+          word-break: normal !important;
+        } 
+
+    /* --- Modern Table Design for Reviews and Orders --- */
+
+    /* Table container (applies to the parent of the table if possible) */
+    div[data-a-name="vine-reviews"] .a-section.vvp-tab-content,
+    div[data-a-name="orders"] .a-section.vvp-tab-content {
+      background: #f6f8fa;
+      border-radius: 16px !important;
+      /* Modern shadow for table container */
+      box-shadow: 0 2px 12px 0 rgba(30, 60, 120, 0.10), 0 4px 24px 0 rgba(30,60,120,0.13) !important;
+      padding: 0 !important;
+      margin: 24px 0 !important;
+      overflow: hidden !important;
+    }
+
+    /* Table header row */
+    div[data-a-name="vine-reviews"] .vvp-reviews-table--heading-top,
+    div[data-a-name="orders"] .vvp-orders-table--heading-top {
+      display: flex !important;
+      align-items: center !important;
+      background: var(--tab-bg-active, #659C43) !important;
+      color: var(--tab-text-active, #fff) !important;
+      padding: 24px 32px 12px 32px !important;
+      border-top-left-radius: 16px !important;
+      border-top-right-radius: 16px !important;
+      font-size: 1.3em !important;
+      font-weight: 700 !important;
+      gap: 64px !important;
+      padding-top: 36px !important;
+      padding-bottom: 24px !important;
+      /* Modern shadow for table header row */
+      box-shadow: 0 4px 24px 0 rgba(30,60,120,0.13) !important;
+      animation: fadeIn 0.5s ease-out 0.15s backwards !important;
+    }
+    div[data-a-name="vine-reviews"] .vvp-reviews-table--heading-top h3,
+    div[data-a-name="orders"] .vvp-orders-table--heading-top h3 {
+      font-size: 1.2em !important;
+      font-weight: 700 !important;
+      margin: 0 !important;
+    }
+
+    /* Action buttons in header */
+    div[data-a-name="vine-reviews"] .vvp-reviews-table--heading-top .a-button,
+    div[data-a-name="orders"] .vvp-orders-table--heading-top .a-button {
+      background: var(--tab-bg-active, #659C43) !important;
+      color: var(--tab-text-active, #fff) !important;
+      border: none !important;
+      border-radius: 999px !important;
+      padding: 8px 24px !important;
+      font-size: 1em !important;
+      font-weight: 500 !important;
+      cursor: pointer !important;
+      transition: background 0.18s;
+      margin-left: 12px !important;
+    }
+    div[data-a-name="vine-reviews"] .vvp-reviews-table--heading-top .a-button:hover,
+    div[data-a-name="orders"] .vvp-orders-table--heading-top .a-button:hover {
+      background: var(--tab-hover-bg, #619EE7) !important;
+      color: var(--tab-bg-active, #659C43) !important;
+    }
+
+    /* Table itself */
+    div[data-a-name="vine-reviews"] .vvp-reviews-table,
+    div[data-a-name="orders"] .vvp-orders-table {
+      width: 100% !important;
+      border-collapse: separate !important;
+      border-spacing: 0 12px !important;
+      background: none !important;
+      margin: 0 !important;
+      padding: 0 32px 24px 32px !important;
+      animation: fadeIn 0.5s ease-out 0.1s backwards !important;
+    }
+
+    /* Table header cells */
+    div[data-a-name="vine-reviews"] .vvp-reviews-table th,
+    div[data-a-name="orders"] .vvp-orders-table th {
+      color: #b3d0f7 !important;
+      background: none !important;
+      font-weight: 600 !important;
+      font-size: 1em !important;
+      letter-spacing: 0.01em !important;
+      box-shadow: none !important;
+      border: none !important;
+      padding: 18px 20px !important;
+      text-align: left !important;
+      animation: fadeIn 0.5s ease-out 0.2s backwards !important;
+    }
+
+    /* Table body cells */
+    div[data-a-name="vine-reviews"] .vvp-reviews-table td,
+    div[data-a-name="orders"] .vvp-orders-table td {
+      background: #fff !important;
+      border: none !important;
+      padding: 18px 20px !important;
+      font-size: 1em !important;
+      text-align: left !important;
+      vertical-align: middle !important;
+      border-radius: 12px !important;
+      box-shadow: 0 1px 4px 0 rgba(30,60,120,0.06) !important;
+    }
+
+    /* Selected row */
+    div[data-a-name="vine-reviews"] .vvp-reviews-table tr.selected td,
+    div[data-a-name="orders"] .vvp-orders-table tr.selected td {
+      background: #eaf3fc !important;
+    }
+
+    /* Pill label for type */
+    div[data-a-name="vine-reviews"] .vvp-reviews-table .vvp-pill,
+    div[data-a-name="orders"] .vvp-orders-table .vvp-pill {
+      display: inline-block !important;
+      background: #eaf3fc !important;
+      color: #4a5a6a !important;
+      border-radius: 999px !important;
+      padding: 6px 18px !important;
+      font-size: 0.98em !important;
+      font-weight: 500 !important;
+    }
+
+    /* Checkbox styling */
+    div[data-a-name="vine-reviews"] .vvp-reviews-table input[type="checkbox"],
+    div[data-a-name="orders"] .vvp-orders-table input[type="checkbox"] {
+      accent-color: var(--tab-bg-active, #659C43) !important;
+      width: 20px !important;
+      height: 20px !important;
+    } 
+
+    /* Make reviews and orders table heading rows less tall and uncolored (increased specificity) */
+    div[data-a-name="vine-reviews"] .vvp-reviews-table tr.vvp-reviews-table--heading-row,
+    div[data-a-name="vine-reviews"] .vvp-reviews-table tr.vvp-reviews-table--heading-row th,
+    div[data-a-name="orders"] .vvp-orders-table tr.vvp-orders-table--heading-row,
+    div[data-a-name="orders"] .vvp-orders-table tr.vvp-orders-table--heading-row th {
+      background: none !important;
+      color: inherit !important;
+    }
+
+    /* Modern export button container and buttons */
+    .vine-export-btn-container {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .vine-export-btn-container .vine-export-btn {
+      background: #f5f6fa;
+      color: #222;
+      border: none;
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 0.92em;
+      font-weight: 600;
+      box-shadow: 0 1px 4px 0 rgba(30,60,120,0.08);
+      cursor: pointer;
+      transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+      outline: none;
+      letter-spacing: 0.01em;
+      display: inline-flex;
+      align-items: center;
+    }
+    .vine-export-btn-container .vine-export-btn:hover:not(:disabled) {
+      background: #ececec;
+      color: #111;
+      box-shadow: 0 2px 8px 0 rgba(30,60,120,0.13);
+    }
+    .vine-export-btn-container .vine-export-btn:active:not(:disabled) {
+      background: #e0e0e0;
+      color: #000;
+    }
+    .vine-export-btn-container .vine-export-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    /* Modernized: Account Page Boxes - match notification monitor card */
+    .vvp-account-box {
+      border-radius: 18px !important;
+      box-shadow: 0 2px 8px 0 rgba(0,0,0,0.10) !important;
+      outline: none !important;
+      transition: box-shadow 0.28s cubic-bezier(0.4, 0.0, 0.2, 1), transform 0.28s cubic-bezier(0.4, 0.0, 0.2, 1);
+    }
+    .vvp-account-box:hover, .vvp-account-box:focus, .vvp-account-box:active {
+      box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18) !important;
+      outline: none !important;
+      transform: translateY(-2px) scale(1.025);
+    } 
+
+    .vvp-learning-resource-container {
+      border-radius: 18px !important;
+      box-shadow: 0 2px 8px 0 rgba(0,0,0,0.10) !important;
+      outline: none !important;
+      transition: box-shadow 0.28s cubic-bezier(0.4, 0.0, 0.2, 1), transform 0.28s cubic-bezier(0.4, 0.0, 0.2, 1);
+    }
+    .vvp-learning-resource-container:hover, .vvp-learning-resource-container:focus, .vvp-learning-resource-container:active {
+      box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18) !important;
+      outline: none !important;
+      transform: translateY(-2px) scale(1.025);
+    } 
+
+    #vvp-resources-page {
+      animation: fadeIn 0.5s ease-out 0.1s backwards !important;
+    } 
+
+    #vvp-account-dashboard {
+      animation: fadeIn 0.5s ease-out 0.1s backwards !important;
+    } 
+
+        .a-section.vvp-items-button-and-search-container {
+          margin-bottom: -40px !important;
+        } 
+
+        /* === SEARCH AUTOCOMPLETE DROPDOWN STYLING === */
+        #vine-search-autocomplete-dropdown {
+          /* Width is set dynamically by JavaScript to match search bar */
+          border-radius: 24px !important;
+        }
+
+        .vine-autocomplete-item {
+          min-height: 50px !important;
+          padding: 8px 12px !important;
+        }
+
+        .vine-autocomplete-item:last-child {
+          border-bottom: none !important;
+        }
+
+        /* Custom scrollbar for autocomplete dropdown */
+        #vine-search-autocomplete-dropdown::-webkit-scrollbar {
+          width: 8px;
+        }
+
+        #vine-search-autocomplete-dropdown::-webkit-scrollbar-track {
+          background: #f1f1f1;
+          border-radius: 24px;
+        }
+
+        #vine-search-autocomplete-dropdown::-webkit-scrollbar-thumb {
+          background: #888;
+          border-radius: 4px;
+          transition: background 0.2s;
+        }
+
+        #vine-search-autocomplete-dropdown::-webkit-scrollbar-thumb:hover {
+          background: #555;
+        }
+
+        /* Firefox scrollbar */
+        #vine-search-autocomplete-dropdown {
+          scrollbar-width: thin;
+          scrollbar-color: #888 #f1f1f1;
+        } 
+
+        /* === Encore Consent Button Styling === */
+        .vine-encore-consent-btn {
+          background: #fff !important;
+          color: #1a1a1a !important;
+          border: 1.5px solid #e0e6ef !important;
+          border-radius: 12px !important;
+          padding: 12px 20px !important;
+          font-size: 0.98em !important;
+          font-weight: 600 !important;
+          cursor: pointer !important;
+          transition: all 0.18s ease !important;
+          box-shadow: 0 2px 8px 0 rgba(30, 60, 120, 0.10) !important;
+          outline: none !important;
+          letter-spacing: 0.01em !important;
+          min-width: 180px !important;
+        }
+
+        .vine-encore-consent-btn:hover {
+          background: #f7f8fa !important;
+          border-color: #5E9BE6 !important;
+          box-shadow: 0 4px 16px 0 rgba(30, 60, 120, 0.15) !important;
+          transform: translateY(-1px) !important;
+        }
+
+        .vine-encore-consent-btn:active {
+          background: #eaf3fc !important;
+          border-color: #4a8bd6 !important;
+          box-shadow: 0 2px 4px 0 rgba(30, 60, 120, 0.20) !important;
+          transform: translateY(0) !important;
+        }
+
+        .vine-encore-consent-btn:focus {
+          border-color: #5E9BE6 !important;
+          box-shadow: 0 0 0 3px rgba(94, 155, 230, 0.20) !important;
+        }
+
+        /* Close prior grouping block if left open by upstream sections */
+        }
+
+      /* ===== THEME TOGGLE DROPDOWN UI ===== */
+      #vvp-theme-toggle-container {
+        position: relative;
+        display: inline-block;
+        margin-left: auto;
+      }
+      
+      #vvp-theme-toggle-btn {
+        background: none !important;
+        border: none !important;
+        cursor: pointer !important;
+        padding: 8px 12px !important;
+        display: flex !important;
+        align-items: center !important;
+        color: #666 !important;
+        font-size: 18px !important;
+        transition: color 0.2s !important;
+      }
+      
+      #vvp-theme-toggle-btn:hover {
+        color: #659C43 !important;
+      }
+      
+      #vvp-theme-toggle-dropdown {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        margin-top: 8px;
+        background: #fff;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px 0 rgba(0,0,0,0.15);
+        padding: 8px 0;
+        min-width: 160px;
+        display: none;
+        z-index: 10000;
+      }
+      
+      #vvp-theme-toggle-dropdown.show {
+        display: block !important;
+      }
+      
+      #vvp-theme-toggle-dropdown .theme-option {
+        padding: 10px 20px !important;
+        cursor: pointer !important;
+        display: block !important;
+        color: #222 !important;
+        font-size: 14px !important;
+        transition: background 0.2s !important;
+        border: none !important;
+        background: none !important;
+        width: 100% !important;
+        text-align: left !important;
+      }
+      
+      #vvp-theme-toggle-dropdown .theme-option:hover {
+        background: #f5f7fa !important;
+      }
+      
+      #vvp-theme-toggle-dropdown .theme-option.active {
+        background: #eaf3fc !important;
+        color: #659C43 !important;
+        font-weight: 600 !important;
+      }
+      
+      #vvp-theme-toggle-dropdown .theme-option .checkmark {
+        float: right;
+        color: #659C43;
+        font-weight: bold;
+        display: none;
+      }
+
+      #vvp-theme-toggle-dropdown .theme-option.active .checkmark {
+        display: block;
+      }
+
+      /* Hide specific elements on Vine pages */
+      #a-page > div.a-container.vvp-body > div.a-tab-container.vvp-tab-set-container > div:nth-child(2) > div > div.a-section.vvp-tab-content > div.a-section.vvp-no-offers-msg {
+        display: none !important;
+      }
+
+      #bookmark {
+        display: none !important;
+      }
+
+      /* Latest Changes Summary:
+      * - Replaced filled background active tab indicators with bolded underline indicators for both vvp-items-button (filter tabs) and a-tabs (main navigation tabs)
+      * - Changed active tab text color from white to black for better contrast
+      * - Added smooth center-reveal hover animations for underline indicators (0.3s ease transition)
+      * - Removed button-like outlines and borders from filter tab buttons for cleaner appearance
+      * - Added hiding rules for specific elements on Vine pages
+      */
+/* === Monitor Backup/Restore UI (Light/Modern) === */
+
+
+/* Monitor backup panel trigger styling — thin invisible strip at card bottom */
+#monitor-backup-panel-trigger {
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  height: 18px !important; /* strip height (slightly taller hitbox) */
+  pointer-events: none !important; /* let the button receive events */
+}
+
+#backup-expand-btn {
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 18px !important; /* interactive area (slightly taller hitbox) */
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  pointer-events: auto !important;
+}
+
+/* Upward-only glow using a blurred gradient pseudo-element */
+#backup-expand-btn::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 18px; /* slightly tighter reach to reduce diffusion */
+  /* Greyscale upward gradient to read as an inward shadow instead of a colored glow */
+  background: linear-gradient(to top,
+              rgba(0,0,0,0.18) 0%,
+              rgba(0,0,0,0.12) 35%,
+              rgba(0,0,0,0.05) 65%,
+              rgba(0,0,0,0.00) 100%);
+  filter: blur(6px);
+  opacity: 0;
+  transition: opacity 220ms ease;
+  pointer-events: none;
+}
+
+/* Bright glow while actively hovering */
+#backup-expand-btn.hovering::before,
+#backup-expand-btn:hover::before {
+  opacity: 1;
+}
+
+/* Persist subtle glow when expanded and not hovered */
+#backup-expand-btn.expanded::before {
+  opacity: 0.32;
+}
+
+/* When expanded AND hovered, be fully bright */
+#backup-expand-btn.expanded.hovering::before,
+#backup-expand-btn.expanded:hover::before {
+  opacity: 1;
+}
+
+/* Smooth expand/collapse animation for backup panel - like window blinds */
+#monitor-backup-panel-content {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(-4px);
+  transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  margin-top: 0 !important;
+  pointer-events: none;
+  width: 100% !important;
+  will-change: max-height, opacity, transform;
+  contain: layout style paint;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+#monitor-backup-panel-content:not(.collapsed) {
+  max-height: 500px !important; /* Large enough to accommodate content */
+  opacity: 1 !important;
+  transform: translateY(0);
+  margin-top: 6px !important;
+  pointer-events: auto !important;
+}
+
+#monitor-backup-panel-content.collapsed {
+  max-height: 0 !important;
+  opacity: 0 !important;
+  transform: translateY(-4px) !important;
+  margin-top: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Monitor Backup/Restore UI Theming - Custom button styling */
+#monitor-backup-panel-content .backup-management-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border: 1px solid #e0e6ef;
+  box-shadow: 0 2px 8px 0 rgba(30, 60, 120, 0.08);
+  transition: box-shadow 0.2s ease;
+}
+
+#monitor-backup-panel-content .backup-auto-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  min-height: 40px;
+}
+
+#monitor-backup-panel-content .backup-management-section:hover {
+  box-shadow: 0 4px 16px 0 rgba(30, 60, 120, 0.12);
+}
+
+/* Custom backup buttons - no Amazon classes */
+.vine-backup-btn {
+  background: #fff;
+  border: 1.5px solid #e0e6ef;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px 0 rgba(30, 60, 120, 0.08);
+  transition: all 0.18s ease;
+  padding: 0;
+  outline: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  min-height: 36px;
+}
+
+.vine-backup-btn:hover {
+  border-color: #5E9BE6;
+  box-shadow: 0 0 0 3px rgba(94, 155, 230, 0.15), 0 2px 8px 0 rgba(30, 60, 120, 0.12);
+  background: #f7f8fa;
+  transform: translateY(-1px);
+}
+
+.vine-backup-btn:focus {
+  border-color: #5E9BE6;
+  box-shadow: 0 0 0 3px rgba(94, 155, 230, 0.20);
+  outline: none;
+}
+
+.vine-backup-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px 0 rgba(30, 60, 120, 0.15);
+}
+
+.vine-backup-btn-text {
+  color: #1a1a1a;
+  font-size: 0.95em;
+  font-weight: 500;
+  padding: 8px 16px;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* Input styling - match modernized input theming */
+#monitor-backup-panel-content input[type="number"] {
+  border: 1.5px solid #e0e6ef !important;
+  border-radius: 8px !important;
+  background: #fff !important;
+  color: #1a1a1a !important;
+  font-size: 0.95em !important;
+  padding: 8px 12px !important;
+  transition: border 0.18s ease, box-shadow 0.18s ease !important;
+  outline: none !important;
+  box-shadow: none !important;
+  min-width: 60px !important;
+  text-align: center !important;
+}
+
+#monitor-backup-panel-content input[type="number"]:focus {
+  border-color: #5E9BE6 !important;
+  box-shadow: 0 0 0 3px rgba(94, 155, 230, 0.15) !important;
+}
+
+#monitor-backup-panel-content input[type="number"]:hover {
+  border-color: #5E9BE6 !important;
+}
+
+/* Checkbox styling - match modernized checkbox theming */
+#monitor-backup-panel-content input[type="checkbox"] {
+  width: 18px !important;
+  height: 18px !important;
+  border: 1.5px solid #e0e6ef !important;
+  border-radius: 0 !important;
+  background: #fff !important;
+  cursor: pointer !important;
+  transition: border 0.18s ease, box-shadow 0.18s ease !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  -o-appearance: none !important;
+  position: relative !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  outline: none !important;
+  box-sizing: border-box !important;
+}
+
+#monitor-backup-panel-content input[type="checkbox"]:checked {
+  background: #5E9BE6 !important;
+  border-color: #5E9BE6 !important;
+}
+
+#monitor-backup-panel-content input[type="checkbox"]:checked::after {
+  content: '✓' !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  color: #fff !important;
+  font-size: 12px !important;
+  font-weight: bold !important;
+}
+
+#monitor-backup-panel-content input[type="checkbox"]:hover {
+  border-color: #5E9BE6 !important;
+  box-shadow: 0 0 0 2px rgba(94, 155, 230, 0.15) !important;
+}
+
+#monitor-backup-panel-content input[type="checkbox"]:focus {
+  border-color: #5E9BE6 !important;
+  box-shadow: 0 0 0 3px rgba(94, 155, 230, 0.20) !important;
+}
+
+/* Label styling */
+#monitor-backup-panel-content .backup-toggle-label,
+#monitor-backup-panel-content .backup-input-label {
+  display: inline-flex;
+  align-items: center !important;
+  gap: 6px !important;
+  font-size: 0.95em !important;
+  font-weight: 500 !important;
+  color: #1a1a1a !important;
+  margin: 0 !important;
+  white-space: nowrap !important;
+  line-height: 18px !important;
+  vertical-align: middle !important;
+}
+
+#monitor-backup-panel-content .backup-toggle-label span,
+#monitor-backup-panel-content .backup-input-label {
+  color: #444 !important;
+  font-weight: 400 !important;
+}
+
+/* Status message styling */
+#monitor-backup-panel-content #backup-status-message {
+  font-size: 0.9em !important;
+  font-weight: 500 !important;
+  padding: 6px 12px !important;
+  border-radius: 6px !important;
+  margin-left: auto !important;
+  transition: opacity 0.3s ease !important;
+  white-space: nowrap !important;
+}
+
+/* Ensure buttons are not clickable when panel is collapsed */
+#monitor-backup-panel-content.collapsed .vine-backup-btn,
+#monitor-backup-panel-content.collapsed input[type="checkbox"],
+#monitor-backup-panel-content.collapsed input[type="number"],
+#monitor-backup-panel-content.collapsed label {
+  pointer-events: none !important;
+  cursor: default !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  #monitor-backup-panel-content .backup-management-section {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+    padding: 12px !important;
+  }
+
+  #monitor-backup-panel-content .backup-action-btn.a-button .a-button-text,
+  #monitor-backup-panel-content .import-btn-label .a-button-text {
+    font-size: 0.9em !important;
+    padding: 10px 14px !important;
+  }
+
+  #monitor-backup-panel-content input[type="number"] {
+    flex: 1 !important;
+    min-width: 50px !important;
+  }
+
+  #monitor-backup-panel-content #backup-status-message {
+    margin-left: 0 !important;
+    margin-top: 8px !important;
+    text-align: center !important;
+    white-space: normal !important;
+  }
+        
+        /* ============================ */
+        /* Notifications Monitor tweaks */
+        /* ============================ */
+
+        /* 2) Tighten control groups in monitor controls */
+        #vh-notification-monitor-controls .vh-control-group,
+        #vh-nm-filters .vh-control-group {
+          display: inline-flex !important;
+          align-items: center !important;
+          gap: 8px !important;        /* tighter gap */
+          margin-right: 10px !important; /* less spacing between groups */
+        }
+
+        #vh-nm-filters .vh-control-group > label,
+        #vh-notification-monitor-controls .vh-control-group > label {
+          margin-right: 6px !important;
+          min-width: auto !important; /* avoid over‑wide labels */
+        }
+
+        #vh-nm-filters .vh-control-group input,
+        #vh-nm-filters .vh-control-group select,
+        #vh-notification-monitor-controls .vh-control-group input,
+        #vh-notification-monitor-controls .vh-control-group select {
+          min-width: 0 !important;    /* allow controls to shrink */
+        }
+
+        /* 3) Keep filters a fixed, narrow width on large screens (avoid elongation) */
+        /* Note: When filters are in grid (grid column 3), the grid rule above handles sizing */
+        /* This rule applies flex/width only when filters are NOT in grid context */
+        #vh-nm-filters {
+          margin-left: auto !important;
+          flex: 0 0 520px !important;
+          width: 520px !important;
+          max-width: 520px !important;
+          min-width: 480px !important;                /* Allow slight compression when in tight spaces */
+        }
+
+        /* Header container: adapt to content (shrink/grow) and center */
+        /* Match sleek theme - use same specificity (no body[data-hash] selector) */
+        /* Override inline styles: display:flex and max-width:500px that cause square collapse */
+        #vh-notifications-monitor-header-ui {
+          display: block !important;                   /* Override inline display:flex */
+          width: fit-content !important;               /* shrink when items disappear */
+          max-width: none !important;                /* Override inline max-width: 500px - allow natural expansion */
+          margin: 0 auto 32px auto !important;         /* center the header card */
+        }
+        
+        /* On small screens, allow full width for usability */
+        @media (max-width: 720px) {
+          #vh-notifications-monitor-header-ui {
+            max-width: 100% !important;               /* Don't exceed viewport on small screens */
+          }
+        }
+
+        /* Prevent children from forcing the header to stretch full width */
+        /* 1) Neutralize the left stack wrapper that has inline flex-grow:1 */
+        /* Match sleek theme exactly - use same specificity (no body[data-hash] selector) */
+        #vh-notifications-monitor-header-ui > div[style*="flex-grow: 1"] {
+          flex: 0 1 auto !important;
+          width: auto !important;
+          max-width: none !important;
+        }
+
+        /* 2) The inline-styled status block with width:100% should not expand the card */
+        #vh-notifications-monitor-header-ui div[style*="display: flex"][style*="width: 100%"][style*="max-width: 600px"] {
+          width: auto !important;
+          max-width: 600px !important;
+          flex: 0 1 auto !important;
+        }
+
+        /* Small screens: use full width for usability */
+        @media (max-width: 720px) {
+          #vh-notifications-monitor-header-ui {
+            display: flex !important;
+            width: 100% !important;
+            max-width: 100% !important;
+          }
+          /* On small screens, allow the left stack to fill width naturally */
+          #vh-notifications-monitor-header-ui > div[style*="flex-grow: 1"],
+          #vh-notifications-monitor-header-ui div[style*="display: flex"][style*="width: 100%"][style*="max-width: 600px"] {
+            flex: 1 1 100% !important;
+            width: 100% !important;
+            max-width: 100% !important;
+          }
+        }
+
+        /* 5) Header row max width to accommodate expand btn on the right */
+        body[data-hash="monitor"] #vh-notifications-monitor-header-ui .vh-header-row {
+          display: flex !important;
+          align-items: center !important;
+          gap: 8px !important;
+          max-width: 500px !important;                 /* around 500px */
+        }
+
+        #vh-notifications-monitor-header-ui .vh-header-row #monitor-backup-panel-trigger {
+          margin-left: auto !important;
+        }
+
+        /* 4) Align Import Backup label with other buttons (fallback to complement JS) */
+        #monitor-backup-panel-content .backup-buttons-group .import-btn-label {
+          display: inline-flex !important;
+          align-items: center !important;
+        }
+}
