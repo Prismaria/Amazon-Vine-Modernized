@@ -887,6 +887,10 @@
     /* Dark count on bright blue */
   }
 
+  body #vvp-filter-container .parent-node span {
+    color: var(--white-text-01) !important;
+  }
+
   .parent-node span,
   .child-node span {
     color: var(--main-grey) !important;
