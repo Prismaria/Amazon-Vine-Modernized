@@ -1,0 +1,10 @@
+# Ignore everything
+*
+!*/
+
+# Allow specific files
+!amazon-vine-modernized.user.js
+!amazon-vine-sleek-dark-theme-standalone.user.css
+
+# Allow .gitignore itself (customary but not explicitly requested, though usually desired)
+!.gitignore
