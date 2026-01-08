@@ -731,11 +731,11 @@
     top: 45px !important;
     /* Aligned with the start of the items grid */
     left: 20px !important;
-    width: 280px !important;
+    width: 260px !important;
     z-index: 10 !important;
     background: var(--less-dark-bg) !important;
     border-radius: 18px !important;
-    padding: 24px !important;
+    padding: 16px !important;
     box-shadow: none !important;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     border: none !important;
@@ -747,6 +747,19 @@
   #vvp-filter-container:hover {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
     transform: translateY(-2px);
+  }
+
+  /* The parent of both the filter and the grid container */
+  .vvp-items-container {
+    position: relative !important;
+    padding-top: 10px !important;
+  }
+
+  /* Ensure the grid container provides room for sidebar */
+  #vvp-items-grid-container {
+    position: relative !important;
+    padding-left: 300px !important;
+    margin-top: 0 !important;
   }
 
   /* Adjust for mobile or smaller screens */
