@@ -30,7 +30,7 @@
 // @grant        GM_getResourceText
 // @grant        GM_addStyle
 // @run-at       document-start
-// @resource     sleekCSS https://raw.githubusercontent.com/PrismarisTech/Amazon-Vine-Modernized/active-dev/amazon-vine-sleek-dark-theme-standalone.user.css?r=7bd5
+// @resource     sleekCSS https://raw.githubusercontent.com/PrismarisTech/Amazon-Vine-Modernized/active-dev/amazon-vine-sleek-dark-theme-standalone.user.css?r=484b?r=7bd5
 // @connect      www.amazon.com
 // @connect      www.amazon.ca
 // @connect      www.amazon.co.uk

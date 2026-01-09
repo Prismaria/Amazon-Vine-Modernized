@@ -465,7 +465,7 @@
   }
 
   #vvp-search-text-input {
-    background: var(--less-dark-bg) !important;
+    background: transparent !important;
     color: var(--white);
   }
 
