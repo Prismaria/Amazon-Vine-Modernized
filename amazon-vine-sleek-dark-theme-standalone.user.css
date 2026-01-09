@@ -733,7 +733,7 @@
     left: 20px !important;
     width: 260px !important;
     z-index: 10 !important;
-    background: var(--less-dark-bg) !important;
+    background: none !important;
     border-radius: 18px !important;
     padding: 16px !important;
     box-shadow: none !important;
