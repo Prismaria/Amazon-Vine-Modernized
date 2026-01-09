@@ -30,7 +30,7 @@
 // @grant        GM_getResourceText
 // @grant        GM_addStyle
 // @run-at       document-start
-// @resource     sleekCSS https://raw.githubusercontent.com/PrismarisTech/Amazon-Vine-Modernized/active-dev/amazon-vine-sleek-dark-theme-standalone.user.css?r=46a7
+// @resource     sleekCSS https://raw.githubusercontent.com/PrismarisTech/Amazon-Vine-Modernized/active-dev/amazon-vine-sleek-dark-theme-standalone.user.css?r=49df
 // @connect      www.amazon.com
 // @connect      www.amazon.ca
 // @connect      www.amazon.co.uk
@@ -4293,9 +4293,8 @@
 
                                         if (data.invalid_uuid) {
                                             console.error('VH Bridge: Invalid UUID - credentials may need refresh');
-                                            // Clear invalid credentials
-                                            localStorage.removeItem('vh_bridge_credentials');
-                                            reject(new Error('Invalid UUID - credentials cleared'));
+                                            // Keep stored credentials to avoid wiping user-provided data on transient failures.
+                                            reject(new Error('Invalid UUID - credentials retained'));
                                         } else if (data.products) {
                                             resolve(data);
                                         } else {
@@ -4358,6 +4357,126 @@
                     }
                 },
 
+                getTileElementByAsin(asin) {
+                    if (!asin) return null;
+
+                    const toolbar = document.querySelector(`#vh-toolbar-${asin}`);
+                    if (toolbar) {
+                        const tile = toolbar.closest('.vvp-item-tile');
+                        if (tile) return tile;
+                    }
+
+                    const direct = document.querySelector(`.vvp-item-tile[data-asin="${asin}"]`);
+                    if (direct) return direct;
+
+                    const input = document.querySelector(`.vvp-item-tile input[data-asin="${asin}"]`);
+                    return input ? input.closest('.vvp-item-tile') : null;
+                },
+
+                toDateFromTimestamp(value) {
+                    if (value == null) return null;
+                    const numeric = typeof value === 'string' ? Number(value) : value;
+                    if (!Number.isFinite(numeric)) return null;
+                    const ms = numeric < 1e12 ? numeric * 1000 : numeric;
+                    const date = new Date(ms);
+                    return Number.isNaN(date.getTime()) ? null : date;
+                },
+
+                parseDateValue(raw) {
+                    if (!raw) return { date: null, display: null };
+
+                    if (typeof raw === 'string') {
+                        const trimmed = raw.trim();
+                        if (!trimmed) return { date: null, display: null };
+                        if (/\b(ago|yesterday|today|just now)\b/i.test(trimmed)) {
+                            return { date: null, display: trimmed };
+                        }
+                        const numeric = Number(trimmed);
+                        if (Number.isFinite(numeric) && trimmed.length <= 13) {
+                            return { date: this.toDateFromTimestamp(numeric), display: null };
+                        }
+                        const parsed = new Date(trimmed);
+                        if (!Number.isNaN(parsed.getTime())) {
+                            return { date: parsed, display: null };
+                        }
+                        return { date: null, display: trimmed };
+                    }
+
+                    if (typeof raw === 'number') {
+                        return { date: this.toDateFromTimestamp(raw), display: null };
+                    }
+
+                    if (typeof raw === 'object') {
+                        const display = raw.display || raw.label || raw.text || null;
+                        if (display) return { date: null, display };
+                        const ts = raw.timestamp || raw.ts || null;
+                        if (ts != null) return { date: this.toDateFromTimestamp(ts), display: null };
+                    }
+
+                    return { date: null, display: null };
+                },
+
+                formatRelativeAge(date) {
+                    if (!date || Number.isNaN(date.getTime())) return '';
+                    const now = Date.now();
+                    const diffMs = now - date.getTime();
+                    if (!Number.isFinite(diffMs)) return '';
+                    if (diffMs < 0) return 'just now';
+
+                    const diffSec = Math.floor(diffMs / 1000);
+                    if (diffSec < 60) return 'just now';
+                    const diffMin = Math.floor(diffSec / 60);
+                    if (diffMin < 60) return `${diffMin} min${diffMin === 1 ? '' : 's'} ago`;
+                    const diffHr = Math.floor(diffMin / 60);
+                    if (diffHr < 24) return `${diffHr} hr${diffHr === 1 ? '' : 's'} ago`;
+                    const diffDay = Math.floor(diffHr / 24);
+                    return `${diffDay} day${diffDay === 1 ? '' : 's'} ago`;
+                },
+
+                updateDateAdded(asin, productData) {
+                    if (!productData) return;
+                    const rawDate = productData.date_added ?? productData.dateAdded ?? productData.date ?? productData.added ??
+                        productData.added_at ?? productData.created_at ?? productData.first_seen ?? productData.firstSeen ??
+                        productData.date_first_seen ?? productData.timestamp ?? productData.ts;
+                    if (!rawDate) return;
+
+                    const { date, display } = this.parseDateValue(rawDate);
+                    const dateText = display || (date ? this.formatRelativeAge(date) : '');
+                    if (!dateText) return;
+
+                    const tile = this.getTileElementByAsin(asin);
+                    if (!tile) return;
+
+                    let dateEl = tile.querySelector('.vh-date-added');
+                    if (!dateEl) {
+                        const imgContainer = tile.querySelector('.vh-img-container') ||
+                            tile.querySelector('.vvp-item-image-container') ||
+                            tile;
+                        if (!imgContainer) return;
+
+                        const computedPosition = window.getComputedStyle(imgContainer).position;
+                        if (computedPosition === 'static') {
+                            imgContainer.style.position = 'relative';
+                        }
+
+                        dateEl = document.createElement('div');
+                        dateEl.className = 'vh-date-added';
+                        dateEl.style.cssText = 'position: absolute; bottom: calc(-2px * var(--vh-monitor-tile-scale, 1)); ' +
+                            'left: 0; transform: translateY(-11px); font-size: 11px; ' +
+                            'background: rgba(0,0,0,0.6); color: white; padding: 2px 4px; border-radius: 0;';
+                        imgContainer.appendChild(dateEl);
+                    }
+
+                    dateEl.textContent = dateText;
+                    if (date) {
+                        const absoluteText = date.toLocaleString();
+                        dateEl.setAttribute('title', absoluteText);
+                        if (!tile.getAttribute('data-date')) {
+                            tile.setAttribute('data-date', absoluteText);
+                        }
+                    }
+                },
+
                 // Process newly added tiles (main entry point)
                 async processNewTiles(newTileElements) {
                     if (!this.credentials) {
@@ -4392,6 +4511,7 @@
                             // Update each toolbar with ETV data
                             for (const [asin, etvData] of Object.entries(apiResponse.products)) {
                                 this.updateToolbarWithETV(asin, etvData);
+                                this.updateDateAdded(asin, etvData);
                             }
                         }
                     } catch (error) {
@@ -7301,27 +7421,38 @@
 
   .vh-status-container,
   .vh-status-container * {
-    background-color: #fff !important;
+    background-color: transparent !important;
     color: #191919 !important;
   }
 
-  .vh-status {
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
+  .vh-status,
+  .vh-status-container,
+  .vh-status-container2,
+  .vh-toolbar-etv {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
   .vh-status-container .vh-toolbar-etv {
-    display: inline-flex !important;
+    display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     align-self: center !important;
-    gap: 2px !important;
-    width: fit-content !important;
-    max-width: 72px !important;
+    gap: 4px !important;
+    width: 100% !important;
+    max-width: none !important;
     min-width: 0 !important;
-    padding: 0 2px !important;
     white-space: nowrap !important;
     overflow: hidden !important;
+    text-align: center !important;
+  }
+
+  .vh-status-container .vh-toolbar-etv .etv {
+    font-size: clamp(14px, calc(18px * var(--vh-monitor-tile-scale, 1)), 24px) !important;
+    line-height: 1 !important;
   }
 
   /* Makes logo transparent for better theme compatibility */

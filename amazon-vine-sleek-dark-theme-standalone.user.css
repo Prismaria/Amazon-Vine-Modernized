@@ -2737,22 +2737,38 @@
 
   .vh-status-container,
   .vh-status-container * {
-    background-color: #fff !important;
-    color: #191919 !important;
+    background-color: transparent !important;
+    color: var(--white-text-01) !important;
+  }
+
+  .vh-status,
+  .vh-status-container,
+  .vh-status-container2,
+  .vh-toolbar-etv {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
   .vh-status-container .vh-toolbar-etv {
-    display: inline-flex !important;
+    display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     align-self: center !important;
-    gap: 2px !important;
-    width: fit-content !important;
-    max-width: 72px !important;
+    gap: 4px !important;
+    width: 100% !important;
+    max-width: none !important;
     min-width: 0 !important;
-    padding: 0 2px !important;
     white-space: nowrap !important;
     overflow: hidden !important;
+    text-align: center !important;
+  }
+
+  .vh-status-container .vh-toolbar-etv .etv {
+    font-size: clamp(14px, calc(18px * var(--vh-monitor-tile-scale, 1)), 24px) !important;
+    line-height: 1 !important;
   }
 
   .vvp-item-tile,
@@ -2798,6 +2814,10 @@
   /* =============================
       Vine Helper related elements
       ============================= */
+  /* Invert Vine Helper toolbar PNG icons to match dark theme */
+  .vh-toolbar-icon {
+    filter: invert(1) brightness(1.05) !important;
+  }
   /* Bookmark buttons (Vine Helper) */
   #bookmark .bookmark {
     background: var(--main-blue-accent) !important;
