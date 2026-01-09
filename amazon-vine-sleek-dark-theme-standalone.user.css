@@ -737,10 +737,11 @@
     border-radius: 18px !important;
     padding: 16px !important;
     box-shadow: none !important;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     border: none !important;
     max-height: none !important;
-    overflow: visible !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
     animation: fadeIn 0.5s ease-out 0.3s backwards !important;
   }
 
@@ -760,6 +761,7 @@
     position: relative !important;
     padding-left: 300px !important;
     margin-top: 0 !important;
+    transition: padding-left 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
   }
 
   /* Adjust for mobile or smaller screens */
@@ -773,6 +775,9 @@
     }
 
     #vvp-items-grid-container {
+      padding-left: 0 !important;
+    }
+    body[data-vh-filter-grid-collapsed="true"] #vvp-items-grid-container {
       padding-left: 0 !important;
     }
   }
@@ -791,6 +796,40 @@
     font-size: 1.1em !important;
     padding: 0 2px !important;
     color: var(--white) !important;
+  }
+
+  #vvp-browse-nodes-container p a.a-link-normal {
+    color: var(--white) !important;
+    font-weight: 600 !important;
+  }
+
+  #vh-filter-toggle {
+    cursor: pointer !important;
+  }
+
+  #vh-filter-toggle::before {
+    content: "|" !important;
+    margin: 0 8px 0 0 !important;
+    color: #c8c8c8 !important;
+    font-weight: normal !important;
+  }
+
+  body[data-vh-filter-collapsed="true"] #vvp-filter-container {
+    height: 20px !important;
+    padding: 0 8px !important;
+  }
+
+  body[data-vh-filter-collapsed="true"] #vvp-browse-nodes-container > :not(p:first-child) {
+    pointer-events: none !important;
+  }
+
+  body[data-vh-filter-collapsed="true"] #vvp-browse-nodes-container > p {
+    margin-bottom: 0 !important;
+    line-height: 20px !important;
+  }
+
+  body[data-vh-filter-grid-collapsed="true"] #vvp-items-grid-container {
+    padding-left: 20px !important;
   }
 
   .parent-node,
@@ -1114,6 +1153,9 @@
 
   #vvp-items-grid .vh-btn-container>.a-button {
     height: calc((36px * var(--vh-monitor-tile-scale, 1)) + (12px * (1 - min(1, var(--vh-monitor-tile-scale, 1))))) !important;
+    border-radius: calc(18px * var(--vh-monitor-tile-scale, 1)) !important;
+    outline: 1.5px solid var(--color-dropdown-border, #4e5656) !important;
+    outline-offset: -1px !important;
   }
 
   #vvp-items-grid .vh-btn-container .a-button-inner,
@@ -1133,6 +1175,9 @@
   #vvp-items-grid .vh-btn-container>.a-button {
     flex: 1 1 0 !important;
     min-width: 0 !important;
+    border-radius: calc(18px * var(--vh-monitor-tile-scale, 1)) !important;
+    outline: 1.5px solid var(--color-dropdown-border, #4e5656) !important;
+    outline-offset: -1px !important;
   }
 
   #vvp-items-grid .vh-btn-container>.a-button+.a-button {
